@@ -14,10 +14,12 @@ function Dark {
 
 function LightWallpaper {
     $path = "C:\Users\m.senos\Pictures\star-wars-wallpaper-light(1).jpg"; 
-    Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; rundll32.exe user32.dll, UpdatePerUserSystemParameters
+    Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; 
+    rundll32.exe user32.dll, UpdatePerUserSystemParameters
 }
 
 function DarkWallpaper {
     $path = "C:\Users\m.senos\Pictures\star-wars-wallpaper-dark(1).jpg"; 
-    Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; rundll32.exe user32.dll, UpdatePerUserSystemParameters
+    Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; 
+    rundll32.exe user32.dll, UpdatePerUserSystemParameters
 }
