@@ -1,5 +1,5 @@
 . C:\Users\m.senos\Documents\PowerShell\themes.ps1
-. C:\Users\m.senos\Documents\PowerShell\work.ps1
+. C:\Users\m.senos\Documents\PowerShell\Work\launcher.ps1
 
 function Startup {
     Start-Utilities
