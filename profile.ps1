@@ -1,5 +1,7 @@
 . C:\Users\m.senos\Documents\PowerShell\themes.ps1
-. C:\Users\m.senos\Documents\PowerShell\Work\launcher.ps1
+Write-Host "themes.ps1 loaded"
+. C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
+Write-Host "worklauncher.ps1 loaded"
 
 function Startup {
     Start-Utilities
