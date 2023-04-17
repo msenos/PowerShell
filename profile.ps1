@@ -1,6 +1,9 @@
-function Startup {
-    Start-Files
+. C:\Users\m.senos\Documents\PowerShell\themes.ps1
+Write-Host "themes.ps1 loaded"
+. C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
+Write-Host "worklauncher.ps1 loaded" 
 
+function Startup {
     Start-Utilities
     Start-Slack
     Start-Teams
@@ -57,14 +60,6 @@ function Start-Docker{
 
     $DockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
     Start-Process $DockerPath -WindowStyle $max
-}
-
-function Start-Files {
-    . C:\Users\m.senos\Documents\PowerShell\themes.ps1
-    Write-Host "themes.ps1 loaded"
-    . C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
-    Write-Host "worklauncher.ps1 loaded"    
-    
 }
 
 function Shutdown {
