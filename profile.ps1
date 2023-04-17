@@ -1,9 +1,14 @@
-. C:\Users\m.senos\Documents\PowerShell\themes.ps1
-Write-Host "themes.ps1 loaded"
-. C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
-Write-Host "worklauncher.ps1 loaded"
 
+function Files {
+    . C:\Users\m.senos\Documents\PowerShell\themes.ps1
+    Write-Host "themes.ps1 loaded"
+    . C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
+    Write-Host "worklauncher.ps1 loaded"    
+    
+}
 function Startup {
+    Files
+
     Start-Utilities
     Start-Slack
     Start-Teams
