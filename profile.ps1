@@ -1,6 +1,7 @@
-. C:\Users\m.senos\Documents\PowerShell\themes.ps1
+$documentsFolder = [environment]::getfolderpath("mydocuments")
+. $documentsFolder\PowerShell\themes.ps1
 Write-Host "themes.ps1 loaded"
-. C:\Users\m.senos\Documents\PowerShell\Work\worklauncher.ps1
+. $documentsFolder\PowerShell\Work\worklauncher.ps1
 Write-Host "worklauncher.ps1 loaded" 
 
 function Startup {
@@ -26,23 +27,23 @@ function Start-Outlook {
 }
 
 function Start-Spotify {
-    $spotify = "C:\Users\m.senos\AppData\Roaming\Spotify\Spotify.exe"
+    $spotify = $env:APPDATA+"\Spotify\Spotify.exe"
     Start-Process $spotify -WindowStyle Minimized
 }
 
 function Start-Postman {
-    $postman = "C:\Users\m.senos\AppData\Local\Postman\Postman.exe"
+    $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
 
 }
 
 function Start-Slack {
-    $slack = "C:\Users\m.senos\AppData\Local\slack\slack.exe"
+    $slack = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Local\slack\slack.exe"
     Start-Process $slack -WindowStyle Maximized
 }
 
 function Start-Teams {
-    $teams = "C:\Users\m.senos\AppData\Local\Microsoft\Teams\Update.exe"
+    $teams = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Microsoft\Teams\Update.exe"
     Start-Process $teams -ArgumentList "--processStart", "Teams.exe", "--process-start-args", "--profile=AAD" -WindowStyle Maximized
 
 }
