@@ -1,24 +1,32 @@
 $documentsFolder = [environment]::getfolderpath("mydocuments")
+$isPersonalMachine = $documentsFolder.Contains("mseno")
+
 . $documentsFolder\PowerShell\themes.ps1
 Write-Host "themes.ps1 loaded"
-. $documentsFolder\PowerShell\Work\worklauncher.ps1
-Write-Host "worklauncher.ps1 loaded" 
+
+if(!$isPersonalMachine){
+    . $documentsFolder\PowerShell\Work\worklauncher.ps1
+    Write-Host "worklauncher.ps1 loaded" 
+}
 
 function Startup {
     Start-Utilities
-    Start-Slack
-    Start-Teams
     Start-Edge
-    Start-VS
-   
+    if(!$isPersonalMachine){
+        Start-Teams
+        Start-Slack
+        Start-VS
+    }
     Write-Host "Startup complete"
 }
 
 function Start-Utilities {
-    Start-Outlook
     Start-Spotify
     Start-Postman
-    Start-Docker
+    if(!$isPersonalMachine){
+        Start-Outlook
+        Start-Docker
+    }
 }
 
 function Start-Outlook {
