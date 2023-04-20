@@ -46,7 +46,7 @@ function Start-Postman {
 }
 
 function Start-Slack {
-    $slack = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Local\slack\slack.exe"
+    $slack = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\slack\slack.exe"
     Start-Process $slack -WindowStyle Maximized
 }
 
