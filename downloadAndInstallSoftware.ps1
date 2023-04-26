@@ -1,12 +1,5 @@
-#postaman
-Invoke-WebRequest -Uri "https://dl.pstmn.io/download/latest/win64" -OutFile "$env:USERPROFILE\Downloads\Postman-latest.exe"
-Start-Process "$env:USERPROFILE\Downloads\Postman-latest.exe" -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
 
 
-
-#VSCode
-Invoke-WebRequest -Uri "https://aka.ms/win32-x64-user-stable" -OutFile "$env:USERPROFILE\Downloads\VSCodeSetup-latest.exe"
-Start-Process "$env:USERPROFILE\Downloads\VSCodeSetup-latest.exe" -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
 #VSProfessional
 Invoke-WebRequest -Uri "https://aka.ms/vs/17/release/vs_Professional.exe" -OutFile "$env:USERPROFILE\Downloads\vs_Professional.exe"
 Start-Process "$env:USERPROFILE\Downloads\vs_Professional.exe" -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
@@ -28,19 +21,25 @@ Invoke-WebRequest -Uri $DownloadUrl -OutFile "$env:TEMP\$ (Split-Path -Path $Dow
 Write-Host "Installing the latest Notepad++"
 Start-Process -FilePath "$env:TEMP\$ (Split-Path -Path $DownloadUrl -Leaf)" -ArgumentList "/S" -Wait
 
-#Creating an object
-$myHashtable = @{
-    Name = 'Kevin'
-    Language = 'PowerShell'
-    State = 'Texas'
-}
-$myObject = New-Object -TypeName PSObject -Property $myHashtable
+#postman 
+$postman = New-Object PSObject
+$postman | Add-Member -MemberType NoteProperty -Name "Name" -Value "Postman"
+$postman | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://dl.pstmn.io/download/latest/win64"
+$postman | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\Postman-latest.exe"
+
+#VS Code
+$vscode = New-Object PSObject
+$vscode | Add-Member -MemberType NoteProperty -Name "Name" -Value "VS Code"
+$vscode | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://aka.ms/win32-x64-user-stable"
+$vscode | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\VSCodeSetup-latest.exe"
 
 #create a list
-$myList = New-Object System.Collections.ArrayList
-$myList.Add("object1")
-$myList.Add("object2")
-# OR
-$myObject = New-Object PSObject
-$myObject | Add-Member -MemberType NoteProperty -Name "Name" -Value "John"
-$myObject | Add-Member -MemberType NoteProperty -Name "Age" -Value "30"
+$appList = New-Object System.Collections.ArrayList
+$appList.Add($postman)
+$appList.Add($vscode)
+
+foreach($app in $appList){
+    Invoke-WebRequest -Uri $app.Uri -OutFile $app.OutFile
+    Write-Host "Installing " + $app.Name
+    Start-Process $app.OutFile -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
+}
