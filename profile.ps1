@@ -61,7 +61,7 @@ function Start-Edge {
     $edge = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     Start-Process $edge --profile-directory=Default -WindowStyle Maximized
     #Personal
-    #Start-Process $edge --profile-directory="Profile 1" -WindowStyle $max
+    #Start-Process $edge --profile-directory="Profile 1" -WindowStyle Maximized
 }
 
 function Start-Docker{
