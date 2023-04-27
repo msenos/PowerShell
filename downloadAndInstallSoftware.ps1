@@ -35,8 +35,33 @@ $notepad | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://githu
 $notepad | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\npp_latest.exe"
 
 #docker
-#git
-#SSMS e a instancia
+#notepadd++
+$docker = New-Object PSObject
+$docker | Add-Member -MemberType NoteProperty -Name "Name" -Value "Docker"
+$docker | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
+$docker | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\docker_latest.exe"
+
+#git 
+$git = New-Object PSObject
+$git | Add-Member -MemberType NoteProperty -Name "Name" -Value "git"
+$git | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://github.com/git-for-windows/git/releases/download/v2.40.1.windows.1/Git-2.40.1-64-bit.exe"
+$git | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\git_latest.exe"
+
+#SqlServer Developer Edition
+$ssde = New-Object PSObject
+$ssde | Add-Member -MemberType NoteProperty -Name "Name" -Value "SqlServer Developer Edition"
+$ssde | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x409&culture=en-us&country=us"
+$ssde | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\ssde_latest.exe"
+
+#SqlServer Management Studio
+$ssms = New-Object PSObject
+$ssms | Add-Member -MemberType NoteProperty -Name "Name" -Value "SqlServer Management Studio"
+$ssms | Add-Member -MemberType NoteProperty -Name "Uri" -Value "https://aka.ms/ssmsfullsetup"
+$ssms | Add-Member -MemberType NoteProperty -Name "OutFile" -Value "$env:USERPROFILE\Downloads\ssms_latest.exe"
+
+#spotify
+#logitech options
+#winrar
 
 #create a list
 $appList = New-Object System.Collections.ArrayList
@@ -46,6 +71,9 @@ $appList.Add($vspro)
 $appList.Add($powertoys)
 $appList.Add($ditto)
 $appList.Add($notepad)
+$appList.Add($docker)
+$appList.Add($git)
+$appList.Add($ssms)
 
 foreach($app in $appList){
     Invoke-WebRequest -Uri $app.Uri -OutFile $app.OutFile
