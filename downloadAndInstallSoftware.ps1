@@ -73,6 +73,7 @@ $appList.Add($ditto)
 $appList.Add($notepad)
 $appList.Add($docker)
 $appList.Add($git)
+$appList.Add($ssde)
 $appList.Add($ssms)
 
 foreach($app in $appList){
