@@ -3,7 +3,7 @@ function Start-VS {
 
     #Visual Studio
     #$RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
-    #$PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
+    $PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
     $PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
 
     $pathsList = #$RouterPath, 
