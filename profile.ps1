@@ -22,10 +22,10 @@ function Startup {
 
 function Start-Utilities {
     Start-Spotify
-    Start-Postman
     if(!$isPersonalMachine){
         Start-Outlook
-        Start-Docker
+        Start-Postman
+        #Start-Docker
     }
 }
 
