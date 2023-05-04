@@ -7,7 +7,7 @@ function Start-VS {
     $PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
 
     $pathsList = #$RouterPath, 
-                 #$PlannerPath,
+                 $PlannerPath,
                  $PurchasingPath
     $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
     $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
