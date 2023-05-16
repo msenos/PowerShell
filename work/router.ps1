@@ -3,21 +3,21 @@
 ################################################################
 
 function Router {
-    RouterClean
-    RouterBuild
+    Clean-Router
+    Build-Router
 }
 
-function RouterClean {
+function Clean-Router {
     $routerPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
     msbuild $routerPath /t:Clean
 }
 
-function RouterBuild {
+function Build-Router {
     $routerPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
     msbuild $routerPath /t:Build
 }
 
-function RouterRebuild {
+function Rebuild-Router {
     $routerPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
     msbuild $routerPath /t:Rebuild
 }
