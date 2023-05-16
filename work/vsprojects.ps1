@@ -1,4 +1,4 @@
-function Start-VS {
+function Run-VS {
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
     #Visual Studio

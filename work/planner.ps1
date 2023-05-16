@@ -3,11 +3,11 @@
 ################################################################
 
 function Planner {
-    PlannerClean
-    PlannerBuild
+    Clean-Planner
+    Build-Planner
 }
 
-function PlannerClean {
+function Clean-Planner {
     $importPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Import.sln"
     msbuild $importPath /t:Clean
 
@@ -18,7 +18,7 @@ function PlannerClean {
     msbuild $plannerPath /t:Clean
 }
 
-function PlannerBuild {
+function Build-Planner {
     $importPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Import.sln"
     msbuild $importPath /t:Build
     
@@ -30,7 +30,7 @@ function PlannerBuild {
     
 }
 
-function PlannerRebuild {
+function Rebuild-Planner {
     $importPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Import.sln"
     msbuild $importPath /t:Rebuild
 
