@@ -1,11 +1,11 @@
-function Run-VS {
+function Start-VS {
     #Visual Studio
     Run-Router
     Run-Planner
     Run-Purchasing
 }
 
-function Run-Router {
+function Start-Router {
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
     
     $RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
@@ -15,7 +15,7 @@ function Run-Router {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
 }
 
-function Run-Planner {
+function Start-Planner {
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
     
     $PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
@@ -25,7 +25,7 @@ function Run-Planner {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PlannerPath -WindowStyle $max
 }
 
-function Run-Purchasing {
+function Start-Purchasing {
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
     
     $PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
