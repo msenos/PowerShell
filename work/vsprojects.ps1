@@ -1,8 +1,8 @@
 function Start-VS {
     #Visual Studio
-    Run-Router
-    Run-Planner
-    Run-Purchasing
+    Start-Router
+    Start-Planner
+    Start-Purchasing
 }
 
 function Start-Router {
