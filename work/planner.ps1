@@ -3,11 +3,11 @@
 ################################################################
 
 function Planner {
-    Clean-Planner
+    Clear-Planner
     Build-Planner
 }
 
-function Clean-Planner {
+function Clear-Planner {
     $importPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Import.sln"
     msbuild $importPath /t:Clean
 

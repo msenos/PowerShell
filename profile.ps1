@@ -10,53 +10,53 @@ if(!$isPersonalMachine){
 }
 
 function Startup {
-    Run-Utilities
-    Run-Edge
+    Start-Utilities
+    Start-Edge
     if(!$isPersonalMachine){
-        Run-Teams
-        Run-Slack
-        Run-VS
+        Start-Teams
+        Start-Slack
+        Start-VS
     }
     Write-Host "Startup complete"
 }
 
-function Run-Utilities {
-    Run-Spotify
+function Start-Utilities {
+    Start-Spotify
     if(!$isPersonalMachine){
-        Run-Outlook
-        Run-Postman
-        #Run-Docker
+        Start-Outlook
+        Start-Postman
+        #Start-Docker
     }
 }
 
-function Run-Outlook {
+function Start-Outlook {
     $outlook = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
     Start-Process $outlook -WindowStyle Maximized
 }
 
-function Run-Spotify {
+function Start-Spotify {
     $spotify = $env:APPDATA+"\Spotify\Spotify.exe"
     Start-Process $spotify -WindowStyle Minimized
 }
 
-function Run-Postman {
+function Start-Postman {
     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
 
 }
 
-function Run-Slack {
+function Start-Slack {
     $slack = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\slack\slack.exe"
     Start-Process $slack -WindowStyle Maximized
 }
 
-function Run-Teams {
+function Start-Teams {
     $teams = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Microsoft\Teams\Update.exe"
     Start-Process $teams -ArgumentList "--processStart", "Teams.exe", "--process-start-args", "--profile=AAD" -WindowStyle Maximized
 
 }
 
-function Run-Edge {
+function Start-Edge {
     #Work
     $edge = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     Start-Process $edge --profile-directory=Default -WindowStyle Maximized
@@ -64,7 +64,7 @@ function Run-Edge {
     #Start-Process $edge --profile-directory="Profile 1" -WindowStyle Maximized
 }
 
-function Run-Docker{
+function Start-Docker{
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
     $DockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
