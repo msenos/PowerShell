@@ -24,7 +24,7 @@ function Start-Utilities {
     Start-Spotify
     if(!$isPersonalMachine){
         Start-Outlook
-        Start-Postman
+        #Start-Postman
         #Start-Docker
     }
 }
