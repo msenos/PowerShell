@@ -27,7 +27,6 @@ function Build-Planner {
     
     $plannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
     msbuild $plannerPath /t:Build
-    
 }
 
 function Rebuild-Planner {
