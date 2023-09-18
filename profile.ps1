@@ -2,11 +2,11 @@ $documentsFolder = [environment]::getfolderpath("mydocuments")
 $isPersonalMachine = $documentsFolder.Contains("mseno")
 
 . $documentsFolder\PowerShell\themes.ps1
-Write-Host "themes.ps1 loaded"
+Write-Host "Themes loaded"
 
 if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\worklauncher.ps1
-    Write-Host "worklauncher.ps1 loaded" 
+    Write-Host "Work Launcher loaded" 
 }
 
 function Startup {
