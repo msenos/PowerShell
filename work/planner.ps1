@@ -39,3 +39,19 @@ function Rebuild-Planner {
     $plannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
     msbuild $plannerPath /t:Rebuild
 }
+
+function Update-Planner {
+    $plannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner"
+    set-location $plannerPath
+    $activeBranch = git rev-parse --abbrev-ref HEAD
+    $isMasterBranch = $activeBranch.Contains("master")
+    if(!$isMasterBranch) {
+        git switch master
+        git pull
+        git switch $activeBranch
+        git merge master
+    }
+    else {
+        git pull
+    }
+}
