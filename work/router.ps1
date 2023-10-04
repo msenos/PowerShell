@@ -26,7 +26,7 @@ function Update-Router {
     $routerPath = "C:\Users\m.senos\source\repos\TS.Router"
     set-location $routerPath
     $activeBranch = git rev-parse --abbrev-ref HEAD
-    $isMasterBranch = $activeBranch.Contains("master")
+    $isMasterBranch = $activeBranch.Contains("main")
     if(!$isMasterBranch) {
         git switch master
         git pull
