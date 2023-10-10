@@ -4,6 +4,7 @@
 
 function Planner {
     Clear-Planner
+    Update-Planner
     Build-Planner
 }
 

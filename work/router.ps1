@@ -4,6 +4,7 @@
 
 function Router {
     Clear-Router
+    Update-Router
     Build-Router
 }
 
