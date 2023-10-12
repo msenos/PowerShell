@@ -29,10 +29,10 @@ function Update-Router {
     $activeBranch = git rev-parse --abbrev-ref HEAD
     $isMasterBranch = $activeBranch.Contains("main")
     if(!$isMasterBranch) {
-        git switch master
+        git switch main
         git pull
         git switch $activeBranch
-        git merge master
+        git merge main
     }
     else {
         git pull

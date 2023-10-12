@@ -1,7 +1,7 @@
 function Start-VS {
     ##Visual Studio
-    #Start-Router
-    Start-Planner
+    Start-Router
+    #Start-Planner
     #Start-Purchasing
     #Start-Operations-Nester
 }
