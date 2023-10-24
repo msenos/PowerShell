@@ -24,15 +24,15 @@ function Rebuild-Router {
 }
 
 function Update-Router {
+    $branch = "main"
     $routerPath = "C:\Users\m.senos\source\repos\TS.Router"
     set-location $routerPath
-    $activeBranch = git rev-parse --abbrev-ref HEAD
-    $isMasterBranch = $activeBranch.Contains("main")
+    $localBranch = git rev-parse --abbrev-ref HEAD
+    $isMasterBranch = $localBranch.Contains($branch)
     if(!$isMasterBranch) {
-        git switch main
-        git pull
-        git switch $activeBranch
-        git merge main
+        git fetch origin $branch
+        git checkout $localBranch
+        git merge origin/$branch
     }
     else {
         git pull

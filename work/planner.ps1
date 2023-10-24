@@ -42,15 +42,15 @@ function Rebuild-Planner {
 }
 
 function Update-Planner {
+    $branch = "master"
     $plannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner"
     set-location $plannerPath
-    $activeBranch = git rev-parse --abbrev-ref HEAD
-    $isMasterBranch = $activeBranch.Contains("master")
+    $localBranch = git rev-parse --abbrev-ref HEAD
+    $isMasterBranch = $localBranch.Contains($branch)
     if(!$isMasterBranch) {
-        git switch master
-        git pull
-        git switch $activeBranch
-        git merge master
+        git fetch origin $branch
+        git checkout $localBranch
+        git merge origin/$branch
     }
     else {
         git pull
