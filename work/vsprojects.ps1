@@ -3,7 +3,8 @@ function Start-VS {
     Start-Router
     #Start-Planner
     #Start-Purchasing
-    #Start-Operations-Nester
+    #Start-OperationsNester
+    Start-OperationsMaterial
 }
 
 function Start-Router {
@@ -36,7 +37,7 @@ function Start-Purchasing {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PurchasingPath -WindowStyle $max
 }
 
-function Start-Operations-Nester {
+function Start-OperationsNester {
     $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
     
     $OperationsNesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
@@ -44,4 +45,14 @@ function Start-Operations-Nester {
     $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
     
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsNesterPath -WindowStyle $max
+}
+
+function Start-OperationsMaterial {
+    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
+    
+    $OperationsMaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
+    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
+    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+    
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsMaterialPath -WindowStyle $max
 }
