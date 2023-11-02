@@ -1,5 +1,5 @@
 ################################################################
-######                Operations.Nester                 ######
+######                Operations.Nester                   ######
 ################################################################
 $nesterRootPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester"
 $nesterPath = $nesterRootPath + "\src\TS.Operations.NEster.sln"
