@@ -5,16 +5,24 @@ $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 $RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
 $PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
 $PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
-$OperationsNesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
-$OperationsMaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
+$NesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
+$MaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
 
-function Start-VS {
+function VS-Start {
     ##Visual Studio
     Router-Start
     Planner-Start
     #Purchasing-Start
     #Nester-Start
     Material-Start
+}
+
+function AllRepos-Update{
+    Planner-Update
+    Router-Update
+    Purchasing-Update
+    Nester-Update
+    Material-Update
 }
 
 function Router-Start {
@@ -30,9 +38,9 @@ function Purchasing-Start {
 }
 
 function Nester-Start {
-    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsNesterPath -WindowStyle $max
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $NesterPath -WindowStyle $max
 }
 
 function Material-Start {
-    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsMaterialPath -WindowStyle $max
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $MaterialPath -WindowStyle $max
 }
