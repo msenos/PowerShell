@@ -7,30 +7,30 @@ $integrationPath = $purchasingRootPath + "\TS.Purchasing.Integration.sln"
 $purchasingPath = $purchasingRootPath + "\TS.Purchasing.sln"
 
 function Purchasing {
-    Clean-Purchasing
-    Update-Purchasing
-    Rebuild-Purchasing
+    Purchasing-Clean
+    Purchasing-Update
+    Purchasing-Rebuild
 }
 
-function Clean-Purchasing {
+function Purchasing-Clean {
     msbuild $ediPath /t:Clean
     msbuild $integrationPath /t:Clean
     msbuild $purchasingPath /t:Clean
 }
 
-function Build-Purchasing {
+function Purchasing-Build {
     msbuild $ediPath /t:Build
     msbuild $integrationPath /t:Build
     msbuild $purchasingPath /t:Build
 }
 
-function Rebuild-Purchasing {
+function Purchasing-Rebuild {
     msbuild $ediPath /t:Rebuild
     msbuild $integrationPath /t:Rebuild
     msbuild $purchasingPath /t:Rebuild
 }
 
-function Update-Purchasing {
+function Purchasing-Update {
     $branch = "master"
     set-location $purchasingRootPath
     $localBranch = git rev-parse --abbrev-ref HEAD

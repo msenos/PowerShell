@@ -5,24 +5,24 @@ $routerRootPath = "C:\Users\m.senos\source\repos\TS.Router"
 $routerPath = $routerRootPath + "\Source\TS.Router.sln"
 
 function Router {
-    Clean-Router
-    Update-Router
-    Rebuild-Router
+    Router-Clean
+    Router-Update
+    Router-Rebuild
 }
 
-function Clean-Router {
+function Router-Clean {
     msbuild $routerPath /t:Clean
 }
 
-function Build-Router {
+function Router-Build {
     msbuild $routerPath /t:Build
 }
 
-function Rebuild-Router {
+function Router-Rebuild {
     msbuild $routerPath /t:Rebuild
 }
 
-function Update-Router {
+function Router-Update {
     $branch = "main"
     set-location $routerRootPath
     $localBranch = git rev-parse --abbrev-ref HEAD

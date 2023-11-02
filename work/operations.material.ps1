@@ -5,24 +5,24 @@ $materialRootPath = "C:\Users\m.senos\source\repos\TS.Operations.Material"
 $materialPath = $materialRootPath + "\src\TS.Operations.Material.sln"
 
 function Material {
-    Clean-Material
-    Update-Material
-    Rebuild-Material
+    Material-Clean
+    Material-Update
+    Material-Rebuild
 }
 
-function Clean-Material {
+function Material-Clean {
     msbuild $materialPath /t:Clean
 }
 
-function Build-Material {
+function Material-Build {
     msbuild $materialPath /t:Build
 }
 
-function Rebuild-Material {
+function Material-Rebuild {
     msbuild $materialPath /t:Rebuild
 }
 
-function Update-Material {
+function Material-Update {
     $branch = "main"
     set-location $materialRootPath
     $localBranch = git rev-parse --abbrev-ref HEAD

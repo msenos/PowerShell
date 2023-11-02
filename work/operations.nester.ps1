@@ -5,24 +5,24 @@ $nesterRootPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester"
 $nesterPath = $nesterRootPath + "\src\TS.Operations.NEster.sln"
 
 function Nester {
-    Clean-Nester
-    Update-Nester
-    Rebuild-Nester
+    Nester-Clean
+    Nester-Update
+    Nester-Rebuild
 }
 
-function Clean-Nester {
+function Nester-Clean {
     msbuild $nesterPath /t:Clean
 }
 
-function Build-Nester {
+function Nester-Build {
     msbuild $nesterPath /t:Build
 }
 
-function Rebuild-Nester {
+function Nester-Rebuild {
     msbuild $nesterPath /t:Rebuild
 }
 
-function Update-Nester {
+function Nester-Update {
     $branch = "main"
     set-location $nesterRootPath
     $localBranch = git rev-parse --abbrev-ref HEAD
