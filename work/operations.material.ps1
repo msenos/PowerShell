@@ -7,7 +7,7 @@ $materialPath = $materialRootPath + "\src\TS.Operations.Material.sln"
 function Material {
     Clean-Material
     Update-Material
-    Build-Material
+    Rebuild-Material
 }
 
 function Clean-Material {

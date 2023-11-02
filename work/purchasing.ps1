@@ -9,7 +9,7 @@ $purchasingPath = $purchasingRootPath + "\TS.Purchasing.sln"
 function Purchasing {
     Clean-Purchasing
     Update-Purchasing
-    Build-Purchasing
+    Rebuild-Purchasing
 }
 
 function Clean-Purchasing {

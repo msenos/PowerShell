@@ -7,7 +7,7 @@ $routerPath = $routerRootPath + "\Source\TS.Router.sln"
 function Router {
     Clean-Router
     Update-Router
-    Build-Router
+    Rebuild-Router
 }
 
 function Clean-Router {

@@ -9,7 +9,7 @@ $plannerPath = $plannerRootPath + "\source\TS.Production.Planner.Manager.Web.sln
 function Planner {
     Clean-Planner
     Update-Planner
-    Build-Planner
+    Rebuild-Planner
 }
 
 function Clean-Planner {

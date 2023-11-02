@@ -7,7 +7,7 @@ $nesterPath = $nesterRootPath + "\src\TS.Operations.NEster.sln"
 function Nester {
     Clean-Nester
     Update-Nester
-    Build-Nester
+    Rebuild-Nester
 }
 
 function Clean-Nester {
