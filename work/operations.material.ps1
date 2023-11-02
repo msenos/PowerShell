@@ -1,32 +1,30 @@
 ################################################################
 ######                Operations.Material                 ######
 ################################################################
+$materialRootPath = "C:\Users\m.senos\source\repos\TS.Operations.Material"
+$materialPath = $materialRootPath + "\src\TS.Operations.Material.sln"
 
 function Material {
-    Clear-Material
+    Clean-Material
     Update-Material
     Build-Material
 }
 
-function Clear-Material {
-    $plannerPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
-    msbuild $plannerPath /t:Clean
+function Clean-Material {
+    msbuild $materialPath /t:Clean
 }
 
 function Build-Material {
-    $plannerPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
-    msbuild $plannerPath /t:Build
+    msbuild $materialPath /t:Build
 }
 
 function Rebuild-Material {
-    $plannerPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
-    msbuild $plannerPath /t:Rebuild
+    msbuild $materialPath /t:Rebuild
 }
 
 function Update-Material {
     $branch = "main"
-    $materialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material"
-    set-location $materialPath
+    set-location $materialRootPath
     $localBranch = git rev-parse --abbrev-ref HEAD
     $isMasterBranch = $localBranch.Contains($branch)
     if(!$isMasterBranch) {

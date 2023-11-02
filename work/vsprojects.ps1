@@ -1,6 +1,16 @@
+$vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
+$vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+$max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
+
+$RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
+$PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
+$PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
+$OperationsNesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
+$OperationsMaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
+
 function Start-VS {
     ##Visual Studio
-    #Start-Router
+    Start-Router
     Start-Planner
     #Start-Purchasing
     #Start-OperationsNester
@@ -8,51 +18,21 @@ function Start-VS {
 }
 
 function Start-Router {
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-    
-    $RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
-    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
-    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-    
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
 }
 
 function Start-Planner {
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-    
-    $PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
-    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
-    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-    
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PlannerPath -WindowStyle $max
 }
 
 function Start-Purchasing {
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-    
-    $PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
-    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
-    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-    
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PurchasingPath -WindowStyle $max
 }
 
 function Start-OperationsNester {
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-    
-    $OperationsNesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
-    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
-    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-    
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsNesterPath -WindowStyle $max
 }
 
 function Start-OperationsMaterial {
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-    
-    $OperationsMaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
-    $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
-    $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-    
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsMaterialPath -WindowStyle $max
 }
