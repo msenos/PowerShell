@@ -10,29 +10,29 @@ $OperationsMaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\
 
 function Start-VS {
     ##Visual Studio
-    Start-Router
-    Start-Planner
-    #Start-Purchasing
-    #Start-OperationsNester
-    Start-OperationsMaterial
+    Router-Start
+    Planner-Start
+    #Purchasing-Start
+    #Nester-Start
+    Material-Start
 }
 
-function Start-Router {
+function Router-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
 }
 
-function Start-Planner {
+function Planner-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PlannerPath -WindowStyle $max
 }
 
-function Start-Purchasing {
+function Purchasing-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PurchasingPath -WindowStyle $max
 }
 
-function Start-OperationsNester {
+function Nester-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsNesterPath -WindowStyle $max
 }
 
-function Start-OperationsMaterial {
+function Material-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $OperationsMaterialPath -WindowStyle $max
 }

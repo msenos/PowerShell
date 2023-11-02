@@ -21,7 +21,6 @@ function Startup {
     Start-Edge
     if(!$isPersonalMachine){
         Start-Teams
-        #Start-Slack
         Start-VS
     }
     Write-Host "Startup complete"
