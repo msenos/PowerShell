@@ -6,7 +6,6 @@ $importPath = $plannerRootPath + "\source\TS.Production.Planner.Import.sln"
 $integrationsPath = $plannerRootPath + "\source\TS.Production.Planner.Integrations.Nav.sln"
 $plannerPath = $plannerRootPath + "\source\TS.Production.Planner.Manager.Web.sln"
 
-
 function Planner {
     Clean-Planner
     Update-Planner

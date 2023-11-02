@@ -65,10 +65,8 @@ function Start-Edge {
 }
 
 function Start-Docker{
-    $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-
     $DockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
-    Start-Process $DockerPath -WindowStyle $max
+    Start-Process $DockerPath -WindowStyle Maximized
 }
 
 function Shutdown {
