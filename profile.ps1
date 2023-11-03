@@ -27,9 +27,9 @@ function Startup {
 }
 
 function Utilities-Start {
-    Start-Spotify
+    Spotify-Start
     if(!$isPersonalMachine){
-        Start-Outlook
+        Outlook-Start
         #Start-Postman
         #Start-Docker
     }
