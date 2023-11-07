@@ -2,11 +2,12 @@ $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Commo
 $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
-$RouterPath = "C:\Users\m.senos\source\repos\TS.Router\Source\TS.Router.sln"
-$PlannerPath = "C:\Users\m.senos\source\repos\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
-$PurchasingPath = "C:\Users\m.senos\source\repos\TS.Purchasing\TS.Purchasing.sln"
-$NesterPath = "C:\Users\m.senos\source\repos\TS.Operations.Nester\src\TS.Operations.Nester.sln"
-$MaterialPath = "C:\Users\m.senos\source\repos\TS.Operations.Material\src\TS.Operations.Material.sln"
+$reposPath = "C:\Users\m.senos\source\repos"
+$RouterPath = $reposPath + "\TS.Router\Source\TS.Router.sln"
+$PlannerPath = $reposPath + "\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
+$PurchasingPath = $reposPath + "\TS.Purchasing\TS.Purchasing.sln"
+$NesterPath = $reposPath + "\TS.Operations.Nester\src\TS.Operations.Nester.sln"
+$MaterialPath = $reposPath + "\TS.Operations.Material\src\TS.Operations.Material.sln"
 
 function VS-Start {
     ##Visual Studio
