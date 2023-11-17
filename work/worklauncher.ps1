@@ -5,3 +5,4 @@ $documentsFolder = [environment]::getfolderpath("mydocuments")
 . $documentsFolder\PowerShell\Work\purchasing.ps1
 . $documentsFolder\PowerShell\Work\operations.material.ps1
 . $documentsFolder\PowerShell\Work\operations.nester.ps1
+. $documentsFolder\PowerShell\Work\production.ps1

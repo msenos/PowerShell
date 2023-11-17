@@ -30,6 +30,10 @@ function Planner-Rebuild {
     msbuild $plannerPath /t:Rebuild
 }
 
+function Planner-Restore {
+    msbuild $plannerPath /t:Restore
+}
+
 function Planner-Update {
     $branch = "master"
     set-location $plannerRootPath

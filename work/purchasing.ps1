@@ -29,6 +29,9 @@ function Purchasing-Rebuild {
     msbuild $integrationPath /t:Rebuild
     msbuild $purchasingPath /t:Rebuild
 }
+function Purchasing-Restore {
+    msbuild $PurchasingPath /t:Restore
+}
 
 function Purchasing-Update {
     $branch = "master"
