@@ -15,6 +15,10 @@ if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\worklauncher.ps1
     Write-Host "Work Launcher loaded" 
 }
+else {
+    . $documentsFolder\PowerShell\rewards.ps1
+    Write-Host "Rewards loaded"
+}
 
 function Startup {
     Utilities-Start
