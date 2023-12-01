@@ -21,6 +21,9 @@ function Router-Build {
 function Router-Rebuild {
     msbuild $routerPath /t:Rebuild
 }
+function Router-Restore {
+    msbuild $routerPath /t:Restore
+}
 
 function Router-Update {
     $branch = "main"
