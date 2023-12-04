@@ -7,7 +7,8 @@
     Start-Sleep -Seconds 5
 
     # Enable developer mode
-    $wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('Bing - Microsoft Edge')
+    $wshell = New-Object -ComObject wscript.shell; 
+    $wshell.AppActivate('Bing')
     $wshell.SendKeys('{F12}')
 
     # Wait for developer tools to load
@@ -15,11 +16,14 @@
 
     # Perform a search
     for ($i = 1; $i -le 30; $i++){
-        $number = Get-Random -Minimum 0 -Maximum 101
+        # $number = Get-Random -Minimum 10 -Maximum 101
         $wshell.SendKeys('{F6}')
-        $wshell.SendKeys($number)
+        Start-Sleep -MilliSeconds 100
+        $wshell.SendKeys($i)
+        Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{ENTER}')
-
-        Start-Sleep -Seconds 5
+        Write-Host($i)
+        
+        Start-Sleep -Seconds 10
     }
 }
