@@ -24,6 +24,7 @@ function AllRepos-Update{
     Purchasing-Update
     Nester-Update
     Material-Update
+    Production-Update
 }
 
 function Router-Start {
