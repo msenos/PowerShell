@@ -11,17 +11,17 @@
     $wshell.AppActivate('Bing')
 
     # Perform a search
-    $numbers = 1..1000 | Get-Random -Count 30 -Unique
+    $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique
+
     for ($i = 1; $i -le 30; $i++){
         $wshell.SendKeys('{F6}')
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
         Start-Sleep -MilliSeconds 100
-        $wshell.SendKeys($numbers[$i])
+        $wshell.SendKeys($($randomIntegers[$i]))
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{ENTER}')
-        $result = "$i - $numbers[$i]"
-        Write-Host($result)
+        Write-Host "$i - $($randomIntegers[$i])"
         
         Start-Sleep -Seconds 10
     }
