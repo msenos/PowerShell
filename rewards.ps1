@@ -13,7 +13,7 @@
     # Perform a search
     $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique
 
-    for ($i = 1; $i -le 30; $i++){
+    for ($i = 0; $i -lt 30; $i++){
         $wshell.SendKeys('{F6}')
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
