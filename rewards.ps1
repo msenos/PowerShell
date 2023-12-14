@@ -21,7 +21,7 @@
         $wshell.SendKeys($($randomIntegers[$i]))
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{ENTER}')
-        Write-Host "$i - $($randomIntegers[$i])"
+        Write-Host "$($i+1) - $($randomIntegers[$i])"
         
         Start-Sleep -Seconds 10
     }
