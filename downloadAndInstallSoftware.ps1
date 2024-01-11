@@ -58,6 +58,6 @@ $appList = @(
 foreach($app in $appList){
     Write-Host "Downloading $($app.Name)"
     Invoke-WebRequest -Uri $app.Uri -OutFile $app.OutFile
-    #Write-Host "Installing $($app.Name)"
+    Write-Host "Installing $($app.Name)"
     #Start-Process $app.OutFile -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
 }

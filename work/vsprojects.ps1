@@ -11,6 +11,8 @@ $MaterialPath = $reposPath + "\TS.Operations.Material\src\TS.Operations.Material
 
 function VS-Start {
     ##Visual Studio
+    AllRepos-Update
+    
     #Router-Start
     Planner-Start
     #Purchasing-Start
