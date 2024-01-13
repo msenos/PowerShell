@@ -1,4 +1,7 @@
  function Run-Rewards {
+    # Start Stopwarch
+    $sw = [Diagnostics.Stopwatch]::StartNew()
+
     # Launch Edge with a URL
     $EdgeURL = 'https://www.bing.com'
     Start-Process -FilePath 'msedge.exe' -ArgumentList $EdgeURL -WindowStyle Maximized
@@ -25,4 +28,8 @@
         
         Start-Sleep -Seconds 10
     }
+
+    # Stop Stopwarch
+    $sw.Stop()
+    Write-Host "Execution duration: $($sw.Elapsed)"
 }
