@@ -26,10 +26,11 @@
         $wshell.SendKeys('{ENTER}')
         Write-Host "$($i+1) - $($randomIntegers[$i])"
         
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 5
     }
 
     # Stop Stopwarch
     $sw.Stop()
-    Write-Host "Execution duration: $($sw.Elapsed)"
+    Write-Host "Execution duration: $sw.Elapsed
+"{0} minute(s) and {1} second(s)" -f $elapsedTime.Minutes, $elapsedTime.Seconds"
 }
