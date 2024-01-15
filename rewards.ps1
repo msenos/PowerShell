@@ -31,6 +31,7 @@
 
     # Stop Stopwarch
     $sw.Stop()
-    Write-Host "Execution duration: $sw.Elapsed
-"{0} minute(s) and {1} second(s)" -f $elapsedTime.Minutes, $elapsedTime.Seconds"
+    $elapsedTime = $sw.Elapsed
+    Write-Host "Execution duration: $($elapsedTime.Minutes) minute(s) and $($elapsedTime.Seconds) second(s)"
+
 }
