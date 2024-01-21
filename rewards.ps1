@@ -26,7 +26,7 @@
         $wshell.SendKeys('{ENTER}')
         Write-Host "$($i+1) - $($randomIntegers[$i])"
         
-        Start-Sleep -Seconds 5
+        Start-Sleep -Seconds 8
     }
 
     # Stop Stopwarch
