@@ -17,6 +17,8 @@
     $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique
 
     for ($i = 0; $i -lt 30; $i++){
+        $wshell.AppActivate('Bing')
+        Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
@@ -26,7 +28,7 @@
         $wshell.SendKeys('{ENTER}')
         Write-Host "$($i+1) - $($randomIntegers[$i])"
         
-        Start-Sleep -Seconds 8
+        Start-Sleep -Seconds 6
     }
 
     # Stop Stopwarch
