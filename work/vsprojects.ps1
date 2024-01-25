@@ -15,7 +15,7 @@ function VS-Start {
     
     #Router-Start
     Planner-Start
-    #Purchasing-Start
+    Purchasing-Start
     #Nester-Start
     #Material-Start
 }

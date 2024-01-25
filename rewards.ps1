@@ -17,8 +17,6 @@
     $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique
 
     for ($i = 0; $i -lt 30; $i++){
-        $wshell.AppActivate('Bing')
-        Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
         Start-Sleep -MilliSeconds 100
         $wshell.SendKeys('{F6}')
@@ -35,5 +33,4 @@
     $sw.Stop()
     $elapsedTime = $sw.Elapsed
     Write-Host "Execution duration: $($elapsedTime.Minutes) minute(s) and $($elapsedTime.Seconds) second(s)"
-
 }
