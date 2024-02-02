@@ -10,14 +10,12 @@ $dockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
 . $documentsFolder\PowerShell\themes.ps1
 Write-Host "Themes loaded"
+. $documentsFolder\PowerShell\rewards.ps1
+Write-Host "Rewards loaded"
 
 if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\worklauncher.ps1
     Write-Host "Work Launcher loaded" 
-}
-else {
-    . $documentsFolder\PowerShell\rewards.ps1
-    Write-Host "Rewards loaded"
 }
 
 function Startup {
