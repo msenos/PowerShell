@@ -18,7 +18,7 @@ if(!$isPersonalMachine){
     Write-Host "Work Launcher loaded" 
 }
 
-function Startup {
+function Start-Work {
     Utilities-Start
     Edge-Start
     if(!$isPersonalMachine){
