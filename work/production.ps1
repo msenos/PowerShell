@@ -10,26 +10,21 @@ function Production {
     Production-Update
     Production-Rebuild
 }
-
 function Production-Clean {
     msbuild $commonAuthorizationPath /t:Clean
     msbuild $ProductionPath /t:Clean
 }
-
 function Production-Build {
     msbuild $commonAuthorizationPath /t:Build
     msbuild $ProductionPath /t:Build
 }
-
 function Production-Rebuild {
     msbuild $commonAuthorizationPath /t:Rebuild
     msbuild $ProductionPath /t:Rebuild
 }
-
 function Production-Restore {
     msbuild $ProductionPath /t:Restore
 }
-
 function Production-Update {
     $branch = "master"
     set-location $productionRootPath

@@ -11,19 +11,16 @@ function Purchasing {
     Purchasing-Update
     Purchasing-Rebuild
 }
-
 function Purchasing-Clean {
     msbuild $ediPath /t:Clean
     msbuild $integrationPath /t:Clean
     msbuild $purchasingPath /t:Clean
 }
-
 function Purchasing-Build {
     msbuild $ediPath /t:Build
     msbuild $integrationPath /t:Build
     msbuild $purchasingPath /t:Build
 }
-
 function Purchasing-Rebuild {
     msbuild $ediPath /t:Rebuild
     msbuild $integrationPath /t:Rebuild
@@ -32,7 +29,6 @@ function Purchasing-Rebuild {
 function Purchasing-Restore {
     msbuild $PurchasingPath /t:Restore
 }
-
 function Purchasing-Update {
     $branch = "master"
     set-location $purchasingRootPath

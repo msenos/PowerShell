@@ -9,22 +9,18 @@ function Router {
     Router-Update
     Router-Rebuild
 }
-
 function Router-Clean {
     msbuild $routerPath /t:Clean
 }
-
 function Router-Build {
     msbuild $routerPath /t:Build
 }
-
 function Router-Rebuild {
     msbuild $routerPath /t:Rebuild
 }
 function Router-Restore {
     msbuild $routerPath /t:Restore
 }
-
 function Router-Update {
     $branch = "main"
     set-location $routerRootPath

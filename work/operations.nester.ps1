@@ -9,19 +9,15 @@ function Nester {
     Nester-Update
     Nester-Rebuild
 }
-
 function Nester-Clean {
     msbuild $nesterPath /t:Clean
 }
-
 function Nester-Build {
     msbuild $nesterPath /t:Build
 }
-
 function Nester-Rebuild {
     msbuild $nesterPath /t:Rebuild
 }
-
 function Nester-Update {
     $branch = "main"
     set-location $nesterRootPath

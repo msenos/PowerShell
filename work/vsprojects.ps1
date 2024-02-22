@@ -19,7 +19,6 @@ function VS-Start {
     #Nester-Start
     #Material-Start
 }
-
 function Repos-Update{
     Planner-Update
     Router-Update
@@ -28,7 +27,6 @@ function Repos-Update{
     Material-Update
     Production-Update
 }
-
 function Repos-Clean{
     Planner-Clean
     Router-Clean
@@ -37,7 +35,6 @@ function Repos-Clean{
     Material-Clean
     Production-Clean
 }
-
 function Repos-Build{
     Planner-Build
     Router-Build
@@ -46,7 +43,6 @@ function Repos-Build{
     Material-Build
     Production-Build
 }
-
 function Repos-Rebuild{
     Planner-Rebuild
     Router-Rebuild
@@ -55,23 +51,18 @@ function Repos-Rebuild{
     Material-Rebuild
     Production-Rebuild
 }
-
 function Router-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
 }
-
 function Planner-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PlannerPath -WindowStyle $max
 }
-
 function Purchasing-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $PurchasingPath -WindowStyle $max
 }
-
 function Nester-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $NesterPath -WindowStyle $max
 }
-
 function Material-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $MaterialPath -WindowStyle $max
 }

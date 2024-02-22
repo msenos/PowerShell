@@ -9,19 +9,15 @@ function Material {
     Material-Update
     Material-Rebuild
 }
-
 function Material-Clean {
     msbuild $materialPath /t:Clean
 }
-
 function Material-Build {
     msbuild $materialPath /t:Build
 }
-
 function Material-Rebuild {
     msbuild $materialPath /t:Rebuild
 }
-
 function Material-Update {
     $branch = "main"
     set-location $materialRootPath

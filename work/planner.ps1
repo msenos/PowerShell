@@ -11,19 +11,16 @@ function Planner {
     Planner-Update
     Planner-Rebuild
 }
-
 function Planner-Clean {
     msbuild $importPath /t:Clean
     msbuild $integrationsPath /t:Clean
     msbuild $plannerPath /t:Clean
 }
-
 function Planner-Build {
     msbuild $importPath /t:Build
     msbuild $integrationsPath /t:Build
     msbuild $plannerPath /t:Build
 }
-
 function Planner-Rebuild {
     msbuild $importPath /t:Rebuild
     msbuild $integrationsPath /t:Rebuild
@@ -33,7 +30,6 @@ function Planner-Rebuild {
 function Planner-Restore {
     msbuild $plannerPath /t:Restore
 }
-
 function Planner-Update {
     $branch = "master"
     set-location $plannerRootPath
