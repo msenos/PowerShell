@@ -11,22 +11,49 @@ $MaterialPath   = $reposPath + "\TS.Operations.Material\src\TS.Operations.Materi
 
 function VS-Start {
     ##Visual Studio
-    AllRepos-Update
+    Repos-Update
     
-    #Router-Start
+    Router-Start
     Planner-Start
-    Purchasing-Start
+    #Purchasing-Start
     #Nester-Start
     #Material-Start
 }
 
-function AllRepos-Update{
+function Repos-Update{
     Planner-Update
     Router-Update
     Purchasing-Update
     Nester-Update
     Material-Update
     Production-Update
+}
+
+function Repos-Clean{
+    Planner-Clean
+    Router-Clean
+    Purchasing-Clean
+    Nester-Clean
+    Material-Clean
+    Production-Clean
+}
+
+function Repos-Build{
+    Planner-Build
+    Router-Build
+    Purchasing-Build
+    Nester-Build
+    Material-Build
+    Production-Build
+}
+
+function Repos-Rebuild{
+    Planner-Rebuild
+    Router-Rebuild
+    Purchasing-Rebuild
+    Nester-Rebuild
+    Material-Rebuild
+    Production-Rebuild
 }
 
 function Router-Start {

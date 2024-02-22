@@ -7,7 +7,7 @@ $teams = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicat
 $edge = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $dockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
-
+#### Execution ####
 . $documentsFolder\PowerShell\themes.ps1
 Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
@@ -16,7 +16,10 @@ Write-Host "Rewards loaded"
 if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\worklauncher.ps1
     Write-Host "Work Launcher loaded" 
+    Set-Location -Path "C:\Users\m.senos"
 }
+
+#### End Execution ####
 
 function Start-Work {
     Utilities-Start
