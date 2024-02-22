@@ -30,7 +30,6 @@ function Start-Work {
     }
     Write-Host "Startup complete"
 }
-
 function Utilities-Start {
     Spotify-Start
     if(!$isPersonalMachine){
@@ -39,40 +38,32 @@ function Utilities-Start {
         #Start-Docker
     }
 }
-
 function Outlook-Start {
     Start-Process $outlook -WindowStyle Maximized
 }
-
 function Spotify-Start {
     Start-Process $spotify -WindowStyle Minimized
 }
-
 function Postman-Start {
     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
 
 }
-
 function Teams-Start {
     Start-Process $teams -ArgumentList "--processStart", "Teams.exe", "--process-start-args", "--profile=AAD" -WindowStyle Maximized
 }
-
 function Edge-Start {
     #Work
     Start-Process $edge --profile-directory=Default -WindowStyle Maximized
     #Personal
     #Start-Process $edge --profile-directory="Profile 1" -WindowStyle Maximized
 }
-
 function Docker-Start {
     Start-Process $dockerPath -WindowStyle Maximized
 }
-
 function Shutdown {
     Stop-Computer
 }
-
 function Restart {
     Restart-Computer
 }
