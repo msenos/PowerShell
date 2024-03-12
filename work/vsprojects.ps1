@@ -2,19 +2,20 @@ $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Commo
 $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
-$reposPath      = "C:\Users\m.senos\source\repos"
-$RouterPath     = $reposPath + "\TS.Router\Source\TS.Router.sln"
-$PlannerPath    = $reposPath + "\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
-$PurchasingPath = $reposPath + "\TS.Purchasing\TS.Purchasing.sln"
-$NesterPath     = $reposPath + "\TS.Operations.Nester\src\TS.Operations.Nester.sln"
-$MaterialPath   = $reposPath + "\TS.Operations.Material\src\TS.Operations.Material.sln"
+$reposPath        = "C:\Users\m.senos\source\repos"
+$RouterPath       = $reposPath + "\TS.Router\Source\TS.Router.sln"
+$PlannerPath      = $reposPath + "\TS.Production.Planner\source\TS.Production.Planner.Manager.Web.sln"
+$PurchasingPath   = $reposPath + "\TS.Purchasing\TS.Purchasing.sln"
+$NesterPath       = $reposPath + "\TS.Operations.Nester\src\TS.Operations.Nester.sln"
+$MaterialPath     = $reposPath + "\TS.Operations.Material\src\TS.Operations.Material.sln"
+$ProdCustomerPath = $reposPath + "\TS.Production.Customer\src\TS.Production.Customer.sln"
 
 function VS-Start {
     ##Visual Studio
     Repos-Update
     
     Router-Start
-    Planner-Start
+    #Planner-Start
     #Purchasing-Start
     #Nester-Start
     #Material-Start
@@ -26,6 +27,7 @@ function Repos-Update{
     Nester-Update
     Material-Update
     Production-Update
+    ProdCustomer-Update
 }
 function Repos-Clean{
     Planner-Clean
@@ -34,6 +36,7 @@ function Repos-Clean{
     Nester-Clean
     Material-Clean
     Production-Clean
+    ProdCustomer-Clean
 }
 function Repos-Build{
     Planner-Build
@@ -42,6 +45,7 @@ function Repos-Build{
     Nester-Build
     Material-Build
     Production-Build
+    ProdCustomer-Build
 }
 function Repos-Rebuild{
     Planner-Rebuild
@@ -50,6 +54,7 @@ function Repos-Rebuild{
     Nester-Rebuild
     Material-Rebuild
     Production-Rebuild
+    ProdCustomer-Rebuild
 }
 function Router-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
@@ -65,4 +70,7 @@ function Nester-Start {
 }
 function Material-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $MaterialPath -WindowStyle $max
+}
+function ProdCustomer-Start {
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $ProdCustomerPath -WindowStyle $max
 }
