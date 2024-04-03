@@ -21,6 +21,15 @@ if(!$isPersonalMachine){
     Set-Location -Path "C:\Users\m.senos"
 }
 
+# function Concatenate-Strings([string]$String1, [string]$String2) {
+#     $result = $String1 + " " + $String2
+#     Write-Output "The concatenated string is: '$result'"
+# }
+
+# # Now, you can call this function with two strings
+# Concatenate-Strings "Hello" "World"
+
+
 #### End Execution ####
 
 function Start-Work {
