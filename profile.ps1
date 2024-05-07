@@ -12,8 +12,8 @@ $dockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
 Write-Host "Rewards loaded"
-. $documentsFolder\PowerShell\nightlight.ps1
-Write-Host "NightLight loaded"
+# . $documentsFolder\PowerShell\nightlight.ps1
+# Write-Host "NightLight loaded"
 
 if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\worklauncher.ps1
