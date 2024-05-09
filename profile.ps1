@@ -16,8 +16,8 @@ Write-Host "Rewards loaded"
 # Write-Host "NightLight loaded"
 
 if(!$isPersonalMachine){
-    . $documentsFolder\PowerShell\Work\worklauncher.ps1
-    Write-Host "Work Launcher loaded" 
+    . $documentsFolder\PowerShell\Work\workloader.ps1
+    Write-Host "Work loaded" 
     Set-Location -Path "C:\Users\m.senos"
 }
 
