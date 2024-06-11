@@ -2,6 +2,19 @@
 ######                   Themes                           ######
 ################################################################
 
+function LightTheme{
+# Define the path to the registry key
+$ThemeRegistryPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
+
+# Define the name of the registry value and the value for light theme
+$ThemeRegistryValueName = "AppsUseLightTheme"
+$LightThemeValue = 1
+
+# Change the theme to light
+Set-ItemProperty -Path $ThemeRegistryPath -Name $ThemeRegistryValueName -Value $LightThemeValue
+
+}
+
 function Light {
     Set-ItemProperty -Path HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize -Name SystemUsesLightTheme -Value 1 -Type Dword -Force
     Set-ItemProperty -Path HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize -Name AppsUseLightTheme -Value 1 -Type Dword -Force
