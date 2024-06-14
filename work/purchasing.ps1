@@ -8,6 +8,8 @@ $purchasingPath = $purchasingRootPath + "\TS.Purchasing.sln"
 
 function Purchasing {
     param (
+        [Alias("s")]
+        [switch]$Start,
         [Alias("b")]
         [switch]$Build,
         [Alias("c")]
@@ -20,15 +22,17 @@ function Purchasing {
 
     switch ($PSBoundParameters.Keys) 
     {
+        "Start"   { Purchasing-Start }
+        "s"       { Purchasing-Start }
         "Build"   { Purchasing-Build }
-        "b"       {Purchasing-Build}
+        "b"       { Purchasing-Build }
         "Clean"   { Purchasing-Clean }
         "c"       { Purchasing-Clean }
         "Update"  { Purchasing-Update }
         "u"       { Purchasing-Update }
         "Rebuild" { Purchasing-Rebuild }
         "r"       { Purchasing-Rebuild }
-        default   { Write-Host "Supported actions are: -Build, -Clean, -Update and -Rebuild" }
+        default   { Write-Host "Supported actions are: -Start, -Build, -Clean, -Update and -Rebuild" }
     }
 }
 function Purchasing-Start {

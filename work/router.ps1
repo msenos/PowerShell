@@ -11,6 +11,8 @@ $routerPath = $routerRootPath + "\Source\TS.Router.sln"
 # }
 function Router {
     param (
+        [Alias("s")]
+        [switch]$Start,
         [Alias("b")]
         [switch]$Build,
         [Alias("c")]
@@ -23,6 +25,8 @@ function Router {
 
     switch ($PSBoundParameters.Keys) 
     {
+        "Start"   { Router-Start }
+        "s"       { Router-Start }
         "Build"   { Router-Build }
         "b"       { Router-Build }
         "Clean"   { Router-Clean }
@@ -31,7 +35,7 @@ function Router {
         "u"       { Router-Update }
         "Rebuild" { Router-Rebuild }
         "r"       { Router-Rebuild }
-        default   { Write-Host "Supported actions are: -Build, -Clean, -Update and -Rebuild" }
+        default   { Write-Host "Supported actions are: -Start, -Build, -Clean, -Update and -Rebuild" }
     }
 }
 function Router-Start {

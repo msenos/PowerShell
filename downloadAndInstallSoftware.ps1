@@ -18,19 +18,19 @@ $appList = @(
         "$env:USERPROFILE\Downloads\DittoSetup_latest.exe")
     [App]::new(
         "VS Code", 
-        "https://aka.ms/win32-x64-user-stable", 
+        "https://vscode.download.prss.microsoft.com/dbazure/download/stable/611f9bfce64f25108829dd295f54a6894e87339d/VSCodeUserSetup-x64-1.90.1.exe", 
         "$env:USERPROFILE\Downloads\VSCodeSetup-latest.exe")
     [App]::new(
         "git",
-        "https://github.com/git-for-windows/git/releases/download/v2.40.1.windows.1/Git-2.40.1-64-bit.exe",
+        "https://github.com/git-for-windows/git/releases/download/v2.45.2.windows.1/Git-2.45.2-64-bit.exe",
         "$env:USERPROFILE\Downloads\git_latest.exe")
     [App]::new(
         "Notepad++", 
-        "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.5.2/npp.8.5.2.Installer.x64.exe", 
+        "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.5/npp.8.5.Installer.x64.exe", 
         "$env:USERPROFILE\Downloads\npp_latest.exe")
     [App]::new(
         "PowerToys", 
-        "https://github.com/microsoft/PowerToys/releases/download/v0.69.1/PowerToysSetup-0.69.1-x64.exe", 
+        "https://github.com/microsoft/PowerToys/releases/download/v0.81.1/PowerToysUserSetup-0.81.1-x64.exe", 
         "$env:USERPROFILE\Downloads\PowerToysSetup.exe")
     [App]::new(
         "Postman", 
@@ -42,7 +42,7 @@ $appList = @(
         "$env:USERPROFILE\Downloads\docker_latest.exe")
     [App]::new(
         "VS Professional", 
-        "https://aka.ms/vs/17/release/vs_Professional.exe", 
+        "https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Professional&channel=Release&version=VS2022&source=VSLandingPage&passive=false&cid=2030", 
         "$env:USERPROFILE\Downloads\vs_Professional.exe")
     [App]::new(
         "SqlServer Developer Edition",
