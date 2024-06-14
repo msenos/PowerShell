@@ -14,18 +14,12 @@ Write-Host "Themes loaded"
 Write-Host "Rewards loaded"
 
 if(!$isPersonalMachine){
-    . $documentsFolder\PowerShell\Work\workloader.ps1
+    . $documentsFolder\PowerShell\Work\vsprojects.ps1
+    . $documentsFolder\PowerShell\Work\router.ps1
+    . $documentsFolder\PowerShell\Work\planner.ps1
+    . $documentsFolder\PowerShell\Work\purchasing.ps1
     Write-Host "Work loaded" 
     }
-
-# function Concatenate-Strings([string]$String1, [string]$String2) {
-#     $result = $String1 + " " + $String2
-#     Write-Output "The concatenated string is: '$result'"
-# }
-
-# # Now, you can call this function with two strings
-# Concatenate-Strings "Hello" "World"
-
 
 #### End Execution ####
 
