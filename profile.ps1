@@ -1,11 +1,11 @@
 $documentsFolder = [environment]::getfolderpath("mydocuments")
 $isPersonalMachine = $documentsFolder.Contains("mseno")
 
-$outlook = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
-$spotify = $env:APPDATA + "\Spotify\Spotify.exe"
-$teams = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData) + "\Microsoft\Teams\Update.exe"
-$edge = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+$outlook    = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
 $dockerPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+$edge       = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+$spotify    = $env:APPDATA + "\Spotify\Spotify.exe"
+$teams       = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData) + "\Microsoft\Teams\Update.exe"
 
 #### Execution ####
 . $documentsFolder\PowerShell\themes.ps1
@@ -16,8 +16,7 @@ Write-Host "Rewards loaded"
 if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\workloader.ps1
     Write-Host "Work loaded" 
-    Set-Location -Path "C:\Users\m.senos"
-}
+    }
 
 # function Concatenate-Strings([string]$String1, [string]$String2) {
 #     $result = $String1 + " " + $String2
@@ -38,6 +37,7 @@ function Start-Work {
         VS-Start
     }
     Write-Host "Startup complete"
+    Set-Location -Path "C:\Users\m.senos"
 }
 function Utilities-Start {
     Spotify-Start
