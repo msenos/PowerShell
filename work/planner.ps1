@@ -21,16 +21,12 @@ function Planner {
         [switch]$Rebuild
     )
 
-    switch ($PSBoundParameters.Keys) 
+    switch ($true) 
     {
-        "Build"   { Planner-Build }
-        "b"       { Planner-Build }
-        "Clean"   { Planner-Clean }
-        "c"       { Planner-Clean }
-        "Update"  { Planner-Update }
-        "u"       { Planner-Update }
-        "Rebuild" { Planner-Rebuild }
-        "r"       { Planner-Rebuild }
+        { $Build }   { Planner-Build }
+        { $Clean }   { Planner-Clean }
+        { $Update }  { Planner-Update }
+        { $Rebuild } { Planner-Rebuild }
         default   { Planner-Start }
     }
 }

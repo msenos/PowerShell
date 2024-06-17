@@ -24,19 +24,15 @@ function Router {
         [switch]$Rebuild
     )
 
-    switch ($PSBoundParameters.Keys) 
-    {
-        "Build"   { Router-Build }
-        "b"       { Router-Build }
-        "Clean"   { Router-Clean }
-        "c"       { Router-Clean }
-        "Update"  { Router-Update }
-        "u"       { Router-Update }
-        "Rebuild" { Router-Rebuild }
-        "r"       { Router-Rebuild }
-        default   { Router-Start }
+    switch ($true) {
+        { $Build }   { Router-Build; break }
+        { $Clean }   { Router-Clean; break }
+        { $Update }  { Router-Update; break }
+        { $Rebuild } { Router-Rebuild; break }
+        default      { Router-Start }
     }
 }
+
 function Router-Start {
     Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $RouterPath -WindowStyle $max
 }

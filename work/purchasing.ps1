@@ -21,16 +21,12 @@ function Purchasing {
         [switch]$Rebuild
     )
 
-    switch ($PSBoundParameters.Keys) 
+    switch ($true) 
     {
-        "Build"   { Purchasing-Build }
-        "b"       { Purchasing-Build }
-        "Clean"   { Purchasing-Clean }
-        "c"       { Purchasing-Clean }
-        "Update"  { Purchasing-Update }
-        "u"       { Purchasing-Update }
-        "Rebuild" { Purchasing-Rebuild }
-        "r"       { Purchasing-Rebuild }
+        { $Build }   { Purchasing-Build }
+        { $Clean }   { Purchasing-Clean }
+        { $Update }  { Purchasing-Update }
+        { $Rebuild } { Purchasing-Rebuild }
         default   { Purchasing-Start }
     }
 }
