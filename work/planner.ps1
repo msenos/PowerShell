@@ -5,11 +5,12 @@ $plannerRootPath = "C:\Users\m.senos\source\repos\TS.Production.Planner"
 $importPath = $plannerRootPath + "\source\TS.Production.Planner.Import.sln"
 $integrationsPath = $plannerRootPath + "\source\TS.Production.Planner.Integrations.Nav.sln"
 $plannerPath = $plannerRootPath + "\source\TS.Production.Planner.Manager.Web.sln"
+$vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
+$vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+$max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
 function Planner {
     param (
-        [Alias("s")]
-        [switch]$Start,
         [Alias("b")]
         [switch]$Build,
         [Alias("c")]
@@ -22,8 +23,6 @@ function Planner {
 
     switch ($PSBoundParameters.Keys) 
     {
-        "Start"   { Planner-Start }
-        "s"       { Planner-Start }
         "Build"   { Planner-Build }
         "b"       { Planner-Build }
         "Clean"   { Planner-Clean }
@@ -32,7 +31,7 @@ function Planner {
         "u"       { Planner-Update }
         "Rebuild" { Planner-Rebuild }
         "r"       { Planner-Rebuild }
-        default   { Write-Host "Supported actions are: -Start, -Build, -Clean, -Update and -Rebuild" }
+        default   { Planner-Start }
     }
 }
 function Planner-Start {

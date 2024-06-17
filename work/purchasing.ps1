@@ -5,11 +5,12 @@ $purchasingRootPath = "C:\Users\m.senos\source\repos\TS.Purchasing"
 $ediPath = $purchasingRootPath + "\TS.Purchasing.EDI.sln"
 $integrationPath = $purchasingRootPath + "\TS.Purchasing.Integration.sln"
 $purchasingPath = $purchasingRootPath + "\TS.Purchasing.sln"
+$vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
+$vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+$max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
 function Purchasing {
     param (
-        [Alias("s")]
-        [switch]$Start,
         [Alias("b")]
         [switch]$Build,
         [Alias("c")]
@@ -22,8 +23,6 @@ function Purchasing {
 
     switch ($PSBoundParameters.Keys) 
     {
-        "Start"   { Purchasing-Start }
-        "s"       { Purchasing-Start }
         "Build"   { Purchasing-Build }
         "b"       { Purchasing-Build }
         "Clean"   { Purchasing-Clean }
@@ -32,7 +31,7 @@ function Purchasing {
         "u"       { Purchasing-Update }
         "Rebuild" { Purchasing-Rebuild }
         "r"       { Purchasing-Rebuild }
-        default   { Write-Host "Supported actions are: -Start, -Build, -Clean, -Update and -Rebuild" }
+        default   { Purchasing-Start }
     }
 }
 function Purchasing-Start {

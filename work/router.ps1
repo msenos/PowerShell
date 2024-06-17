@@ -3,6 +3,9 @@
 ################################################################
 $routerRootPath = "C:\Users\m.senos\source\repos\TS.Router"
 $routerPath = $routerRootPath + "\Source\TS.Router.sln"
+$vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE"
+$vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
+$max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
 # function Router {
 #     Router-Clean
@@ -11,8 +14,6 @@ $routerPath = $routerRootPath + "\Source\TS.Router.sln"
 # }
 function Router {
     param (
-        [Alias("s")]
-        [switch]$Start,
         [Alias("b")]
         [switch]$Build,
         [Alias("c")]
@@ -25,8 +26,6 @@ function Router {
 
     switch ($PSBoundParameters.Keys) 
     {
-        "Start"   { Router-Start }
-        "s"       { Router-Start }
         "Build"   { Router-Build }
         "b"       { Router-Build }
         "Clean"   { Router-Clean }
@@ -35,7 +34,7 @@ function Router {
         "u"       { Router-Update }
         "Rebuild" { Router-Rebuild }
         "r"       { Router-Rebuild }
-        default   { Write-Host "Supported actions are: -Start, -Build, -Clean, -Update and -Rebuild" }
+        default   { Router-Start }
     }
 }
 function Router-Start {

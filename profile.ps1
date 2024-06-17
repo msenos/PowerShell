@@ -24,44 +24,40 @@ if(!$isPersonalMachine){
 #### End Execution ####
 
 function Start-Work {
-    Utilities-Start
-    Edge-Start
+    Start-Edge
+    Start-Spotify
+    Start-Outlook
+    Start-Postman
+    Start-Docker
+
     if(!$isPersonalMachine){
-        Teams-Start
+        Start-Teams
         VS-Start
     }
     Write-Host "Startup complete"
     Set-Location -Path "C:\Users\m.senos"
 }
-function Utilities-Start {
-    Spotify-Start
-    if(!$isPersonalMachine){
-        Outlook-Start
-        #Start-Postman
-        #Start-Docker
-    }
-}
-function Outlook-Start {
+function Start-Outlook {
     Start-Process $outlook -WindowStyle Maximized
 }
-function Spotify-Start {
+function Start-Spotify {
     Start-Process $spotify -WindowStyle Minimized
 }
-function Postman-Start {
+function Start-Postman {
     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
 
 }
-function Teams-Start {
+function Start-Teams {
     Start-Process $teams -ArgumentList "--processStart", "Teams.exe", "--process-start-args", "--profile=AAD" -WindowStyle Maximized
 }
-function Edge-Start {
+function Start-Edge {
     #Work
     Start-Process $edge --profile-directory=Default -WindowStyle Maximized
     #Personal
     #Start-Process $edge --profile-directory="Profile 1" -WindowStyle Maximized
 }
-function Docker-Start {
+function Start-Docker {
     Start-Process $dockerPath -WindowStyle Maximized
 }
 function Shutdown {
