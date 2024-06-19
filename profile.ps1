@@ -27,8 +27,8 @@ function Start-Work {
     Start-Edge
     Start-Spotify
     Start-Outlook
-    Start-Postman
-    Start-Docker
+    # Start-Postman
+    # Start-Docker
 
     if(!$isPersonalMachine){
         Start-Teams
