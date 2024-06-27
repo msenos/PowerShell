@@ -1,4 +1,4 @@
-$documentsFolder = [environment]::getfolderpath("mydocuments")
+$documentsFolder = "C:\Users\m.senos\Documents" #[environment]::getfolderpath("mydocuments")
 $isPersonalMachine = $documentsFolder.Contains("mseno")
 
 $outlook    = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
@@ -31,7 +31,7 @@ function Start-Work {
     # Start-Docker
 
     if(!$isPersonalMachine){
-        Start-Teams
+        # Start-Teams
         VS-Start
     }
     Write-Host "Startup complete"
@@ -40,9 +40,9 @@ function Start-Work {
 function Start-Outlook {
     Start-Process $outlook -WindowStyle Maximized
 }
-function Start-Spotify {
-    Start-Process $spotify -WindowStyle Minimized
-}
+# function Start-Spotify {
+#     Start-Process $spotify -WindowStyle Minimized
+# }
 function Start-Postman {
     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
@@ -53,9 +53,9 @@ function Start-Teams {
 }
 function Start-Edge {
     #Work
-    Start-Process $edge --profile-directory=Default -WindowStyle Maximized
+    Start-Process $edge + " - Work" -WindowStyle Maximized
     #Personal
-    #Start-Process $edge --profile-directory="Profile 1" -WindowStyle Maximized
+    Start-Process $edge + " - Personal" -WindowStyle Maximized
 }
 function Start-Docker {
     Start-Process $dockerPath -WindowStyle Maximized
