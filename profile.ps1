@@ -1,4 +1,4 @@
-$documentsFolder = "C:\Users\m.senos\Documents" #[environment]::getfolderpath("mydocuments")
+$documentsFolder = "C:\Users\mseno\OneDrive\Documents" #[environment]::getfolderpath("mydocuments")
 $isWorkMachine = $documentsFolder.Contains("m.senos")
 
 $outlook      = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
