@@ -14,7 +14,7 @@
     $wshell.AppActivate('Bing')
 
     # Perform a search
-    $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique
+    $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique | Sort-Object
 
     for ($i = 0; $i -lt 30; $i++){
         $wshell.SendKeys('{F6}')
