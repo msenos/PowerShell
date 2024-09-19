@@ -7,11 +7,6 @@ $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Commo
 $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
 $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
 
-# function Router {
-#     Router-Clean
-#     Router-Update
-#     Router-Rebuild
-# }
 function Router {
     param (
         [Alias("b")]

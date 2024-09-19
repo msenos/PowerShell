@@ -1,14 +1,13 @@
 $machineUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$isPersonalMachine = $machineUser.Contains("mseno")
+$isWorkMachine = !$machineUser.Contains("mseno")
 $documentsFolder = $isPersonalMachine ? [environment]::getfolderpath("mydocuments") : "C:\Users\m.senos\Documents" 
 
 $outlook      = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
-$dockerPath   = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+$docker   = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $edgeWork     = $edge + " - Work"
 $edgePersonal = $edge + " - Personal"
 $spotify      = $env:APPDATA + "\Spotify\Spotify.exe"
-# $teams        = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData) + "\Microsoft\Teams\Update.exe"
 
 #### Execution ####
 . $documentsFolder\PowerShell\themes.ps1
@@ -16,7 +15,7 @@ Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
 Write-Host "Rewards loaded"
 
-if(!$isPersonalMachine){
+if($isWorkMachine){
     . $documentsFolder\PowerShell\Work\vsprojects.ps1
     . $documentsFolder\PowerShell\Work\router.ps1
     . $documentsFolder\PowerShell\Work\planner.ps1
@@ -24,21 +23,17 @@ if(!$isPersonalMachine){
     Write-Host "Work loaded" 
     }
 
+Write-Host "Startup complete"
+Set-Location -Path "C:\Users\m.senos"
 #### End Execution ####
 
 function Start-Work {
     Start-Edge
     Start-Spotify
     Start-Outlook
-    # Start-Postman
-    # Start-Docker
-
-    if(!$isPersonalMachine){
-        # Start-Teams
-        VS-Start
-    }
-    Write-Host "Startup complete"
-    Set-Location -Path "C:\Users\m.senos"
+    Start-Postman
+    Start-Docker
+    Start-VS
 }
 function Start-Outlook {
     Start-Process $outlook -WindowStyle Maximized
@@ -51,9 +46,6 @@ function Start-Postman {
     Start-Process $postman -WindowStyle Maximized
 
 }
-# function Start-Teams {
-#     Start-Process $teams -ArgumentList "--processStart", "Teams.exe", "--process-start-args", "--profile=AAD" -WindowStyle Maximized
-# }
 function Start-Edge {
     #Work
     Start-Process $edgeWork -WindowStyle Maximized
@@ -61,7 +53,7 @@ function Start-Edge {
     Start-Process $edgePersonal -WindowStyle Maximized
 }
 function Start-Docker {
-    Start-Process $dockerPath -WindowStyle Maximized
+    Start-Process $docker -WindowStyle Maximized
 }
 function Shutdown {
     Stop-Computer
