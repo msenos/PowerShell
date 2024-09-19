@@ -1,5 +1,6 @@
-$documentsFolder = "C:\Users\mseno\OneDrive\Documents" #[environment]::getfolderpath("mydocuments")
-$isWorkMachine = $documentsFolder.Contains("m.senos")
+$machineUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+$isPersonalMachine = $machineUser.Contains("mseno")
+$documentsFolder = $isPersonalMachine ? [environment]::getfolderpath("mydocuments") : "C:\Users\m.senos\Documents" 
 
 $outlook      = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
 $dockerPath   = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
@@ -15,7 +16,7 @@ Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
 Write-Host "Rewards loaded"
 
-if($isWorkMachine){
+if(!$isPersonalMachine){
     . $documentsFolder\PowerShell\Work\vsprojects.ps1
     . $documentsFolder\PowerShell\Work\router.ps1
     . $documentsFolder\PowerShell\Work\planner.ps1
