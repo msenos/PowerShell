@@ -1,9 +1,9 @@
 $machineUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $isWorkMachine = !$machineUser.Contains("mseno")
-$documentsFolder = $isPersonalMachine ? [environment]::getfolderpath("mydocuments") : "C:\Users\m.senos\Documents" 
+$documentsFolder = $isWorkMachine ? "C:\Users\m.senos\Documents" : [environment]::getfolderpath("mydocuments") 
 
 $outlook      = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
-$docker   = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+$docker       = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $edgeWork     = $edge + " - Work"
 $edgePersonal = $edge + " - Personal"
@@ -24,7 +24,7 @@ if($isWorkMachine){
     }
 
 Write-Host "Startup complete"
-Set-Location -Path "C:\Users\m.senos"
+Set-Location -Path "C:\Users\mseno"
 #### End Execution ####
 
 function Start-Work {
