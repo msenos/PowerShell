@@ -24,7 +24,12 @@ if($isWorkMachine){
     }
 
 Write-Host "Startup complete"
-Set-Location -Path "C:\Users\mseno"
+if($isWorkMachine){
+    Set-Location -Path "C:\Users\m.senos"
+}
+else {
+    Set-Location - Path "C:\Users\mseno"
+}
 #### End Execution ####
 
 function Start-Work {
