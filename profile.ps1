@@ -1,3 +1,4 @@
+$location     = "C:\Users\mseno"
 $machineUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $isWorkMachine = !$machineUser.Contains("mseno")
 $documentsFolder = $isWorkMachine ? "C:\Users\m.senos\Documents" : [environment]::getfolderpath("mydocuments") 
@@ -8,7 +9,6 @@ $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $edgeWork     = $edge + " - Work"
 $edgePersonal = $edge + " - Personal"
 $spotify      = $env:APPDATA + "\Spotify\Spotify.exe"
-$location     = "C:\Users\mseno"
 
 #### Execution ####
 . $documentsFolder\PowerShell\themes.ps1
@@ -27,7 +27,7 @@ if($isWorkMachine){
 
 Write-Host "Startup complete"
 
-Set-Location - Path $location
+Set-Location -Path $location
 
 #### End Execution ####
 
