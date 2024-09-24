@@ -8,6 +8,7 @@ $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $edgeWork     = $edge + " - Work"
 $edgePersonal = $edge + " - Personal"
 $spotify      = $env:APPDATA + "\Spotify\Spotify.exe"
+$location     = "C:\Users\mseno"
 
 #### Execution ####
 . $documentsFolder\PowerShell\themes.ps1
@@ -16,6 +17,7 @@ Write-Host "Themes loaded"
 Write-Host "Rewards loaded"
 
 if($isWorkMachine){
+    $location = "C:\Users\m.senos"
     . $documentsFolder\PowerShell\Work\vsprojects.ps1
     . $documentsFolder\PowerShell\Work\router.ps1
     . $documentsFolder\PowerShell\Work\planner.ps1
@@ -24,12 +26,9 @@ if($isWorkMachine){
     }
 
 Write-Host "Startup complete"
-if($isWorkMachine){
-    Set-Location -Path "C:\Users\m.senos"
-}
-else {
-    Set-Location - Path "C:\Users\mseno"
-}
+
+Set-Location - Path $location
+
 #### End Execution ####
 
 function Start-Work {
