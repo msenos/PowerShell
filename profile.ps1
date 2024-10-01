@@ -1,6 +1,6 @@
-$location     = "C:\Users\mseno"
-$machineUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$isWorkMachine = !$machineUser.Contains("mseno")
+$location        = "C:\Users\mseno"
+$machineUser     = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+$isWorkMachine   = !$machineUser.Contains("mseno")
 $documentsFolder = $isWorkMachine ? "C:\Users\m.senos\Documents" : [environment]::getfolderpath("mydocuments") 
 
 $outlook      = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
@@ -10,20 +10,24 @@ $edgeWork     = $edge + " - Work"
 $edgePersonal = $edge + " - Personal"
 $spotify      = $env:APPDATA + "\Spotify\Spotify.exe"
 
+$themeFilePath      = "$documentsFolder\PowerShell\themes.ps1"
+$rewardsFilePath    = "$documentsFolder\PowerShell\rewards.ps1"
+$vsprojectsFilePath = "$documentsFolder\PowerShell\Work\vsprojects.ps1"
+$routerFilePath     = "$documentsFolder\PowerShell\Work\router.ps1"
+$plannerFilePath    = "$documentsFolder\PowerShell\Work\planner.ps1"
+$purchasingFilePath = "$documentsFolder\PowerShell\Work\purchasing.ps1"
+
 #### Execution ####
-. $documentsFolder\PowerShell\themes.ps1
-Write-Host "Themes loaded"
-. $documentsFolder\PowerShell\rewards.ps1
-Write-Host "Rewards loaded"
+Load-File -filePath $themeFilePath   -successMessage "Themes loaded"
+Load-File -filePath $rewardsFilePath -successMessage "Rewards loaded"
 
 if($isWorkMachine){
+    Load-File -filePath $vsprojectsFilePath -successMessage "VS Projects file loaded"
+    Load-File -filePath $routerFilePath     -successMessage "Router loaded"
+    Load-File -filePath $plannerFilePath    -successMessage "Planner loaded"
+    Load-File -filePath $purchasingFilePath -successMessage "Purchasing loaded"
     $location = "C:\Users\m.senos"
-    . $documentsFolder\PowerShell\Work\vsprojects.ps1
-    . $documentsFolder\PowerShell\Work\router.ps1
-    . $documentsFolder\PowerShell\Work\planner.ps1
-    . $documentsFolder\PowerShell\Work\purchasing.ps1
-    Write-Host "Work loaded" 
-    }
+}
 
 Write-Host "Startup complete"
 
@@ -58,6 +62,19 @@ function Start-Edge {
 }
 function Start-Docker {
     Start-Process $docker -WindowStyle Maximized
+}
+function Load-File {
+    param (
+        [string]$filePath,
+        [string]$successMessage
+    )
+    
+    if (Test-Path $filePath) {
+        . $filePath
+        Write-Host $successMessage
+    } else {
+        Write-Output "File not found: $filePath"
+    }
 }
 function Shutdown {
     Stop-Computer
