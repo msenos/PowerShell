@@ -17,24 +17,6 @@ $routerFilePath     = "$documentsFolder\PowerShell\Work\router.ps1"
 $plannerFilePath    = "$documentsFolder\PowerShell\Work\planner.ps1"
 $purchasingFilePath = "$documentsFolder\PowerShell\Work\purchasing.ps1"
 
-#### Execution ####
-Load-File -filePath $themeFilePath   -successMessage "Themes loaded"
-Load-File -filePath $rewardsFilePath -successMessage "Rewards loaded"
-
-if($isWorkMachine){
-    Load-File -filePath $vsprojectsFilePath -successMessage "VS Projects file loaded"
-    Load-File -filePath $routerFilePath     -successMessage "Router loaded"
-    Load-File -filePath $plannerFilePath    -successMessage "Planner loaded"
-    Load-File -filePath $purchasingFilePath -successMessage "Purchasing loaded"
-    $location = "C:\Users\m.senos"
-}
-
-Write-Host "Startup complete"
-
-Set-Location -Path $location
-
-#### End Execution ####
-
 function Start-Work {
     Start-Edge
     Start-Spotify
@@ -63,7 +45,7 @@ function Start-Edge {
 function Start-Docker {
     Start-Process $docker -WindowStyle Maximized
 }
-function Load-File {
+function Start-File {
     param (
         [string]$filePath,
         [string]$successMessage
@@ -82,3 +64,21 @@ function Shutdown {
 function Restart {
     Restart-Computer
 }
+
+#### Execution ####
+Start-File -filePath $themeFilePath   -successMessage "Themes loaded"
+Start-File -filePath $rewardsFilePath -successMessage "Rewards loaded"
+
+if($isWorkMachine){
+    Start-File -filePath $vsprojectsFilePath -successMessage "VS Projects file loaded"
+    Start-File -filePath $routerFilePath     -successMessage "Router loaded"
+    Start-File -filePath $plannerFilePath    -successMessage "Planner loaded"
+    Start-File -filePath $purchasingFilePath -successMessage "Purchasing loaded"
+    $location = "C:\Users\m.senos"
+}
+
+Write-Host "Startup complete"
+
+Set-Location -Path $location
+
+#### End Execution ####
