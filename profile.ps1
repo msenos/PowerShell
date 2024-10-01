@@ -77,7 +77,7 @@ if($isWorkMachine){
     $location = "C:\Users\m.senos"
 }
 
-Write-Host "Startup complete"
+Write-Host "Powershell setup complete"
 
 Set-Location -Path $location
 
