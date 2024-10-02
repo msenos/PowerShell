@@ -22,7 +22,6 @@ if($isWorkMachine){
     . $documentsFolder\PowerShell\Work\router.ps1
     . $documentsFolder\PowerShell\Work\planner.ps1
     . $documentsFolder\PowerShell\Work\purchasing.ps1
-    Write-Host "Work loaded" 
     }
 
 Write-Host "Startup complete"
@@ -48,7 +47,6 @@ function Start-Spotify {
 function Start-Postman {
     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
     Start-Process $postman -WindowStyle Maximized
-
 }
 function Start-Edge {
     #Work
