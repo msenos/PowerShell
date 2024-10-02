@@ -71,9 +71,9 @@ Start-File -filePath $rewardsFilePath -successMessage "Rewards loaded"
 
 if($isWorkMachine){
     Start-File -filePath $vsprojectsFilePath -successMessage "VS Projects file loaded"
-    Start-File -filePath $routerFilePath     -successMessage "  Router loaded"
-    Start-File -filePath $plannerFilePath    -successMessage "  Planner loaded"
-    Start-File -filePath $purchasingFilePath -successMessage "  Purchasing loaded"
+    Start-File -filePath $routerFilePath     -successMessage "Router loaded"
+    Start-File -filePath $plannerFilePath    -successMessage "Planner loaded"
+    Start-File -filePath $purchasingFilePath -successMessage "Purchasing loaded"
     $location = "C:\Users\m.senos"
 }
 
