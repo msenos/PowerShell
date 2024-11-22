@@ -47,6 +47,8 @@ Write-Host "Themes loaded"
 Write-Host "Rewards loaded"
 . $documentsFolder\PowerShell\Work\vsprojects.ps1
 Write-Host "VS project loaded"
+. $documentsFolder\PowerShell\Work\sourcing.ps1
+Write-Host "VS Sourcing project loaded"
 
 Write-Host "Powershell setup complete"
 

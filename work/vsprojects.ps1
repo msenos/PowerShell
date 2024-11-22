@@ -1,22 +1,57 @@
-function Start-VS {
-    ##Visual Studio
-    Repos-Update
+$alxRootPath = "C:\Users\mseno\source\repos\alx\backend\Alx.sln"
 
-    #Router
-    Start-Sleep -Seconds 1
-    Router-Start
+$vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\"
+$vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
+$max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
+
+
+function Alx-Start {
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $alxRootPath -WindowStyle $max
 }
-function Repos-Update{
-    Router-Update
+
+function Alx {
+    param (
+        [Alias("b")]
+        [switch]$Build,
+        [Alias("c")]
+        [switch]$Clean,
+        [Alias("r")]
+        [switch]$Rebuild,
+        [Alias("u")]
+        [switch]$Update
+    )
+
+    switch ($true) {
+        { $Build }   { AlxRepos-Build; break }
+        { $Clean }   { AlxRepos-Clean; break }
+        { $Rebuild } { AlxRepos-Rebuild; break }
+        { $Update }  { AlxRepos-Update; break }
+        default      { Alx-Start; break }
+    }
 }
-function Repos-Clean{
-    Router-Clean
+
+function AlxRepos-Clean{
+    msbuild $alxRootPath /t:Clean
 }
-function Repos-Build{
-    Router-Build
+function AlxRepos-Build{
+    msbuild $alxRootPath /t:Build
 }
-function Repos-Rebuild{
-    Router-Rebuild
+function AlxRepos-Rebuild{
+    msbuild $alxRootPath /t:Rebuild
+}
+function AlxRepo-Update{
+    $branch = "develop"
+    set-location $alxRootPath
+    $localBranch = git rev-parse --abbrev-ref HEAD
+    $isMasterBranch = $localBranch.Contains($branch)
+    if(!$isMasterBranch) {
+        git fetch origin $branch
+        git checkout $localBranch
+        git merge origin/$branch
+    }
+    else {
+        git pull
+    }
 }
 
 function Run-AlxConfiguration{
