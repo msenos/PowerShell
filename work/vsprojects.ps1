@@ -1,13 +1,9 @@
-$alxRootPath = "C:\Users\mseno\source\repos\alx\backend\Alx.sln"
+$alxRepoPath = "C:\Users\mseno\source\repos\alx"
+$alxSolutionPath = $alxRepoPath + "\backend\Alx.sln"
 
 $vs22WorkDir = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\"
 $vs22 = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe"
 $max = ([System.Diagnostics.ProcessWindowStyle]::Maximized)
-
-
-function Alx-Start {
-    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $alxRootPath -WindowStyle $max
-}
 
 function Alx {
     param (
@@ -30,18 +26,18 @@ function Alx {
     }
 }
 
-function AlxRepos-Clean{
-    msbuild $alxRootPath /t:Clean
-}
 function AlxRepos-Build{
-    msbuild $alxRootPath /t:Build
+    msbuild $alxSolutionPath /t:Build
+}
+function AlxRepos-Clean{
+    msbuild $alxSolutionPath /t:Clean
 }
 function AlxRepos-Rebuild{
-    msbuild $alxRootPath /t:Rebuild
+    msbuild $alxSolutionPath /t:Rebuild
 }
-function AlxRepo-Update{
+function AlxRepos-Update{
     $branch = "develop"
-    set-location $alxRootPath
+    set-location $alxRepoPath
     $localBranch = git rev-parse --abbrev-ref HEAD
     $isMasterBranch = $localBranch.Contains($branch)
     if(!$isMasterBranch) {
@@ -52,6 +48,9 @@ function AlxRepo-Update{
     else {
         git pull
     }
+}
+function Alx-Start {
+    Start-Process $vs22 -WorkingDirectory $vs22WorkDir -ArgumentList $alxRepoPath -WindowStyle $max
 }
 
 function Run-AlxConfiguration{
@@ -66,7 +65,6 @@ function Run-AlxConfiguration{
         Write-Host "An error occurred: $_" -ForegroundColor Red 
     }
 }
-
 function Run-AlxAdminApp{
     try { 
         # Navigate to the specified directory 

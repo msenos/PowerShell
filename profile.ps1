@@ -1,36 +1,21 @@
 function Start-Work {
     # Start-Edge
-    # Start-Spotify
-    # Start-Outlook
-    # Start-Postman
-    # Start-Docker
-    # Start-VS
+    Start-Spotify
+    Start-VS
 }
-# function Start-Outlook {
-#     $outlook = "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE"
-#     Start-Process $outlook -WindowStyle Maximized
-# }
 function Start-Spotify {
     $spotify = $env:APPDATA + "\Spotify\Spotify.exe"
     Start-Process $spotify -WindowStyle Minimized
 }
-# function Start-Postman {
-#     $postman = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)+"\Postman\Postman.exe"
-#     Start-Process $postman -WindowStyle Maximized
-# }
 # function Start-Edge {
 #     $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-#     $edgeWork     = $edge + " - Work"
-#     $edgePersonal = $edge + " - Personal"
+#     $workProfile     = "Profile 2"
+#     $personalProfile = "Default"
     
 #     #Work
-#     Start-Process $edgeWork -WindowStyle Maximized
+#     Start-Process $edge --profile-directory=$workProfile -WindowStyle Maximized
 #     #Personal
-#     Start-Process $edgePersonal -WindowStyle Maximized
-# }
-# function Start-Docker {
-#     $docker = "C:\Program Files\Docker\Docker\Docker Desktop.exe"
-#     Start-Process $docker -WindowStyle Maximized
+#     Start-Process $edge --profile-directory=$personalProfile -WindowStyle Maximized
 # }
 function Shutdown {
     Stop-Computer
@@ -52,6 +37,6 @@ Write-Host "VS Sourcing project loaded"
 
 Write-Host "Powershell setup complete"
 
-Set-Location -Path $location
+# Set-Location -Path $location
 
 #### End Execution ####
