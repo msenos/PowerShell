@@ -34,7 +34,8 @@ Write-Host "Rewards loaded"
 Write-Host "VS project loaded"
 . $documentsFolder\PowerShell\Work\sourcing.ps1
 Write-Host "VS Sourcing project loaded"
-
+. $documentsFolder\Powershell\code.ps1
+Write-Host "Code loaded"
 Write-Host "Powershell setup complete"
 
 # Set-Location -Path $location
