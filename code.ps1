@@ -35,9 +35,9 @@ function Start-CleanProject {
     dotnet new sln -n $projectName
 
     # Create main projects
-    dotnet new webapi -n "$projectName.Api"        # Api layer
-    dotnet new classlib -n "$projectName.Domain"   # Domain layer
-    dotnet new classlib -n "$projectName.Application" # Application layer
+    dotnet new webapi -n "$projectName.Api"              # Api layer
+    dotnet new classlib -n "$projectName.Domain"         # Domain layer
+    dotnet new classlib -n "$projectName.Application"    # Application layer
     dotnet new classlib -n "$projectName.Infrastructure" # Infrastructure layer
 
     # Create a folder for all test projects
@@ -45,9 +45,9 @@ function Start-CleanProject {
     Set-Location -Path "Tests"
 
     # Create test projects using xUnit in the Tests folder
-    dotnet new xunit -n "$projectName.Api.Tests"        # Api test project
-    dotnet new xunit -n "$projectName.Domain.Tests"     # Domain test project
-    dotnet new xunit -n "$projectName.Application.Tests" # Application test project
+    dotnet new xunit -n "$projectName.Api.Tests"            # Api test project
+    dotnet new xunit -n "$projectName.Domain.Tests"         # Domain test project
+    dotnet new xunit -n "$projectName.Application.Tests"    # Application test project
     dotnet new xunit -n "$projectName.Infrastructure.Tests" # Infrastructure test project
 
     # Return to the root folder
@@ -72,7 +72,7 @@ function Start-CleanProject {
     dotnet sln "$projectName.sln" add "Tests/$projectName.Infrastructure.Tests/$projectName.Infrastructure.Tests.csproj"
 
     # Add BlazorClient to the solution (if chosen)
-    if ($addBlazor -eq "yes") {
+    if ($addBlazor -eq "yes" || $addBlazor -eq "y") {
         dotnet sln "$projectName.sln" add "$projectName.BlazorClient/$projectName.BlazorClient.csproj"
     }
 
