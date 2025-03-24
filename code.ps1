@@ -25,9 +25,11 @@ function Create-Database {
 function Start-CleanProject {
     # Prompt for the project name
     $projectName = Read-Host "Enter the project name"
+    # Optional: Ask user if they want to add a BlazorClient project
+    $addBlazor = Read-Host "Do you want to add a BlazorClient project? (yes/no)"
 
     # Create the project folder and navigate into it
-    Set-Location -Path "C:\Users\mseno\repos"
+    Set-Location -Path "C:\Users\mseno\source\repos"
     New-Item -ItemType Directory -Name $projectName
     Set-Location -Path $projectName
 
@@ -53,8 +55,6 @@ function Start-CleanProject {
     # Return to the root folder
     Set-Location -Path ..
 
-    # Optional: Ask user if they want to add a BlazorClient project
-    $addBlazor = Read-Host "Do you want to add a BlazorClient project? (yes/no)"
     if ($addBlazor -eq "yes" || $addBlazor -eq "y") {
         dotnet new blazorwasm -n "$projectName.BlazorClient"
     }
@@ -120,5 +120,5 @@ function Start-CleanProject {
     }
 
     # Call the Create-Database function
-    Create-Database -databaseName $projectName + "Db"
+    Create-Database -databaseName ($projectName + "Db")
 }
