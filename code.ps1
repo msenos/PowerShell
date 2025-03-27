@@ -1,11 +1,12 @@
-Import-Module SqlServer
 
 # Function to create the database
 function Create-Database {
     param (
         [string]$databaseName
-    )
-
+        )
+        
+    Import-Module SqlServer
+    
     # Nome da instância do SQL Server e configurações
     $serverInstance = "localhost, 1433" # Substitua pelo nome da sua instância SQL Server
     
