@@ -30,10 +30,10 @@ $documentsFolder = "C:\Users\mseno\OneDrive\Documents\"
 Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
 Write-Host "Rewards loaded"
-. $documentsFolder\PowerShell\Work\vsprojects.ps1
+# . $documentsFolder\PowerShell\Work\vsprojects.ps1
 #Write-Host "VS project loaded"
 #. $documentsFolder\PowerShell\Work\sourcing.ps1
-Write-Host "VS Sourcing project loaded"
+# Write-Host "VS Sourcing project loaded"
 . $documentsFolder\Powershell\code.ps1
 Write-Host "Code loaded"
 Write-Host "Powershell setup complete"
