@@ -1,11 +1,11 @@
+Import-Module SqlServer
 
 # Function to create the database
 function Create-Database {
     param (
         [string]$databaseName
-        )
+    )
         
-    Import-Module SqlServer
     
     # Nome da instância do SQL Server e configurações
     $serverInstance = "localhost, 1433" # Substitua pelo nome da sua instância SQL Server
@@ -28,7 +28,7 @@ function Start-CleanProject {
     $projectName = Read-Host "Enter the project name"
     # Optional: Ask user if they want to add a BlazorClient project
     $addBlazor = Read-Host "Do you want to add a BlazorClient project? (yes/no)"
-
+   
     # Create the project folder and navigate into it
     Set-Location -Path "C:\Users\mseno\source\repos"
     New-Item -ItemType Directory -Name $projectName
@@ -88,15 +88,21 @@ function Start-CleanProject {
     dotnet add "Tests/$projectName.Application.Tests/$projectName.Application.Tests.csproj" reference "$projectName.Application/$projectName.Application.csproj"
     dotnet add "Tests/$projectName.Infrastructure.Tests/$projectName.Infrastructure.Tests.csproj" reference "$projectName.Infrastructure/$projectName.Infrastructure.csproj"
 
-    # Add NuGet packages (examples)
+    # Add NuGet packages
     # Main projects
     # API Layer
     dotnet add "$projectName.Api/$projectName.Api.csproj" package Microsoft.AspNetCore.OpenApi
     dotnet add "$projectName.Api/$projectName.Api.csproj" package Microsoft.EntityFrameworkCore.Design
     dotnet add "$projectName.Api/$projectName.Api.csproj" package Swashbuckle.AspNetCore
+
+    # Domain Layer
     dotnet add "$projectName.Domain/$projectName.Domain.csproj" package FluentValidation
+    
+    # Application Layer
     dotnet add "$projectName.Application/$projectName.Application.csproj" package MediatR
     dotnet add "$projectName.Application/$projectName.Application.csproj" package AutoMapper
+    dotnet add "$projectName.Application/$projectName.Application.csproj" package Microsoft.FeatureManagement
+
     # Infrastructure Layer
     dotnet add "$projectName.Infrastructure/$projectName.Infrastructure.csproj" package Microsoft.EntityFrameworkCore
     dotnet add "$projectName.Infrastructure/$projectName.Infrastructure.csproj" package Microsoft.EntityFrameworkCore.Design
@@ -104,8 +110,10 @@ function Start-CleanProject {
 
     # Test projects
     dotnet add "Tests/$projectName.Api.Tests/$projectName.Api.Tests.csproj" package Moq
+    dotnet add "Tests/$projectName.Api.Tests/$projectName.Api.Tests.csproj" package FluentAssertions
     dotnet add "Tests/$projectName.Domain.Tests/$projectName.Domain.Tests.csproj" package FluentAssertions
     dotnet add "Tests/$projectName.Application.Tests/$projectName.Application.Tests.csproj" package FluentAssertions
+    dotnet add "Tests/$projectName.Application.Tests/$projectName.Application.Tests.csproj" package Moq
     dotnet add "Tests/$projectName.Infrastructure.Tests/$projectName.Infrastructure.Tests.csproj" package Moq
 
     # BlazorClient (optional)
@@ -116,10 +124,12 @@ function Start-CleanProject {
 
     # Output confirmation
     Write-Host "Clean Architecture solution '$projectName' created successfully with test projects organized in the 'Tests' folder!"
+    
     if ($addBlazor -eq "yes") {
         Write-Host "BlazorClient project added to the solution with NuGet packages!"
     }
 
     # Call the Create-Database function
     Create-Database -databaseName ($projectName + "Db")
+    
 }
