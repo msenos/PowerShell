@@ -22,7 +22,9 @@ function Invoke-BingRewardsSearch {
     $wshell = New-Object -ComObject wscript.shell
 
     # Generate unique random numbers
-    $randomIntegers = Get-Random -InputObject (1..1000) -Count $TotalSearches | Select-Object -Unique
+    $randomIntegers = Get-Random -InputObject (1..1000) -Count $TotalSearches 
+                        | Select-Object -Unique
+                        | Sort-Object
 
     for ($i = 0; $i -lt $randomIntegers.Count; $i++){
         # Refocus Edge to ensure keys aren't sent to the wrong app
