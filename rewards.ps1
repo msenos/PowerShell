@@ -1,36 +1,46 @@
- function Run-Rewards {
-    # Start Stopwarch
+function Invoke-BingRewardsSearch {
+    <#
+    .SYNOPSIS
+        Automates Bing searches to accrue Microsoft Rewards points.
+    #>
+    [CmdletBinding()]
+    param(
+        [int]$TotalSearches = 30,
+        [int]$SleepBetweenSearches = 6
+    )
+
     $sw = [Diagnostics.Stopwatch]::StartNew()
 
-    # Launch Edge with a URL
+    # Launch Edge
     $EdgeURL = 'https://www.bing.com'
+    Write-Host "Launching Edge..." -ForegroundColor Cyan
     Start-Process -FilePath 'msedge.exe' -ArgumentList $EdgeURL -WindowStyle Maximized
 
     # Wait for Edge to load
-    Start-Sleep -Seconds 5
+    Start-Sleep -Seconds $SleepBetweenSearches
 
-    # Enable developer mode
-    $wshell = New-Object -ComObject wscript.shell; 
-    $wshell.AppActivate('Bing')
+    $wshell = New-Object -ComObject wscript.shell
 
-    # Perform a search
-    $randomIntegers = Get-Random -InputObject (1..1000) -Count 30 | Select-Object -Unique | Sort-Object
+    # Generate unique random numbers
+    $randomIntegers = Get-Random -InputObject (1..1000) -Count $TotalSearches | Select-Object -Unique
 
-    for ($i = 0; $i -lt 30; $i++){
-        $wshell.SendKeys('{F6}')
-        Start-Sleep -MilliSeconds 100
-        $wshell.SendKeys('{F6}')
-        Start-Sleep -MilliSeconds 100
-        $wshell.SendKeys($($randomIntegers[$i]))
-        Start-Sleep -MilliSeconds 100
-        $wshell.SendKeys('{ENTER}')
-        Write-Host "$($i+1) - $($randomIntegers[$i])"
-        
-        Start-Sleep -Seconds 6
+    for ($i = 0; $i -lt $randomIntegers.Count; $i++){
+        # Refocus Edge to ensure keys aren't sent to the wrong app
+        $wshell.AppActivate('Bing') | Out-Null
+        Start-Sleep -Milliseconds 500
+
+        # Use CTRL+E to focus the search bar (cleaner than F6)
+        $wshell.SendKeys('^e')
+        Start-Sleep -Milliseconds 200
+
+        # Type the search term and Enter
+        $wshell.SendKeys("$($randomIntegers[$i]){ENTER}")
+
+        Write-Host "Search $($i+1)/$($TotalSearches): $($randomIntegers[$i])" -ForegroundColor Gray
+
+        Start-Sleep -Seconds $SleepBetweenSearches
     }
 
-    # Stop Stopwarch
     $sw.Stop()
-    $elapsedTime = $sw.Elapsed
-    Write-Host "Execution duration: $($elapsedTime.Minutes) minute(s) and $($elapsedTime.Seconds) second(s)"
+    Write-Host "Finished! Total time: $($sw.Elapsed.Minutes)m $($sw.Elapsed.Seconds)s" -ForegroundColor Green
 }
