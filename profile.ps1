@@ -17,6 +17,17 @@ function Start-Spotify {
 #     #Personal
 #     Start-Process $edge --profile-directory=$personalProfile -WindowStyle Maximized
 # }
+
+function Get-PublicIP {
+    try {
+        $ip = Invoke-RestMethod -Uri "https://api.ipify.org" -TimeoutSec 2
+        $ip | Set-Clipboard
+        Write-Host "Public IP $ip copied to clipboard!" -ForegroundColor Green
+    } catch {
+        Write-Warning "Could not retrieve public IP. Check your connection."
+    }
+}
+
 function Shutdown {
     Stop-Computer
 }
