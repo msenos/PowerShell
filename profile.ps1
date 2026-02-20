@@ -37,8 +37,8 @@ function Restart {
 
 #### Execution ####
 $documentsFolder = "C:\Users\mseno\OneDrive\Documents\"
-. $documentsFolder\PowerShell\themes.ps1
-Write-Host "Themes loaded"
+# . $documentsFolder\PowerShell\themes.ps1
+# Write-Host "Themes loaded"
 . $documentsFolder\PowerShell\rewards.ps1
 Write-Host "Rewards loaded"
 # . $documentsFolder\PowerShell\Work\vsprojects.ps1
