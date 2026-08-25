@@ -1,11 +1,23 @@
 function Start-Work {
-    # Start-Edge
     Start-Spotify
     Start-VS
 }
 function Start-Spotify {
-    $spotify = $env:APPDATA + "\Spotify\Spotify.exe"
-    Start-Process $spotify -WindowStyle Minimized
+    $spotify = Join-Path $env:APPDATA 'Spotify\Spotify.exe'
+    if (Test-Path $spotify) {
+        Start-Process -FilePath $spotify -WindowStyle Minimized
+    } else {
+        Write-Warning "Spotify was not found at $spotify"
+    }
+}
+
+function Start-VS {
+    $visualStudio = Get-Command devenv.exe -ErrorAction SilentlyContinue
+    if ($null -eq $visualStudio) {
+        Write-Warning "Visual Studio (devenv.exe) was not found on PATH"
+        return
+    }
+    Start-Process -FilePath $visualStudio.Source
 }
 # function Start-Edge {
 #     $edge         = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
@@ -36,10 +48,10 @@ function Restart {
 }
 
 #### Execution ####
-$documentsFolder = "C:\Users\mseno\OneDrive\Documents\"
-. $documentsFolder\PowerShell\themes.ps1
+$scriptRoot = $PSScriptRoot
+. (Join-Path $scriptRoot 'themes.ps1')
 Write-Host "Themes loaded"
-. $documentsFolder\PowerShell\rewards.ps1
+. (Join-Path $scriptRoot 'rewards.ps1')
 Write-Host "Rewards loaded"
 # . $documentsFolder\PowerShell\Work\vsprojects.ps1
 #Write-Host "VS project loaded"

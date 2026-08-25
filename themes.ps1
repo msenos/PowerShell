@@ -26,28 +26,32 @@ function Dark {
 }
 
 function VSCodeDark{
-    $settings = Get-Content "$env:APPDATA\Code\settings.json" | ConvertFrom-Json
+    $settingsPath = Join-Path $env:APPDATA 'Code\settings.json'
+    $settings = Get-Content $settingsPath -Raw -ErrorAction Stop | ConvertFrom-Json
     $settings."workbench.colorTheme" = "Visual Studio Dark"
-    $setting | ConvertTo-Json -Depth 32 | Set-Content "$env:APPDATA\Code\settings.json"
+    $settings | ConvertTo-Json -Depth 32 | Set-Content $settingsPath
 }
 
 function VSCodeLight{
-    $settings = Get-Content "$env:APPDATA\Code\settings.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+    $settingsPath = Join-Path $env:APPDATA 'Code\settings.json'
+    if (-not (Test-Path $settingsPath)) {
+        throw "VS Code settings file was not found: $settingsPath"
+    }
+    $settings = Get-Content $settingsPath -Raw -ErrorAction Stop | ConvertFrom-Json
     if ($null -eq $settings.'workbench.colorTheme') {
         $settings.'workbench.colorTheme' = "Visual Studio Light"
     }
-    #$settings."workbench.colorTheme" = "Visual Studio Light"
-    $setting | ConvertTo-Json -Depth 32 | Set-Content "$env:APPDATA\Code\settings.json"
+    $settings | ConvertTo-Json -Depth 32 | Set-Content $settingsPath
 }
 
 function LightWallpaper {
-    $path = "C:\Users\m.senos\Pictures\star-wars-wallpaper-light(1).jpg"; 
+    $path = Join-Path $env:USERPROFILE 'Pictures\star-wars-wallpaper-light(1).jpg'
     Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; 
     rundll32.exe user32.dll, UpdatePerUserSystemParameters
 }
 
 function DarkWallpaper {
-    $path = "C:\Users\m.senos\Pictures\star-wars-wallpaper-dark(1).jpg"; 
+    $path = Join-Path $env:USERPROFILE 'Pictures\star-wars-wallpaper-dark(1).jpg'
     Set-ItemProperty -Path 'HKCU:\\Control Panel\\Desktop' -Name Wallpaper -Value $path; 
     rundll32.exe user32.dll, UpdatePerUserSystemParameters
 }

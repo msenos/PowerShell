@@ -5,7 +5,9 @@ function Invoke-BingRewardsSearch {
     #>
     [CmdletBinding()]
     param(
+        [ValidateRange(1, 1000)]
         [int]$TotalSearches = 30,
+        [ValidateRange(0, 3600)]
         [int]$SleepBetweenSearches = 6
     )
 
@@ -28,7 +30,9 @@ function Invoke-BingRewardsSearch {
 
     for ($i = 0; $i -lt $randomIntegers.Count; $i++){
         # Refocus Edge to ensure keys aren't sent to the wrong app
-        $wshell.AppActivate('Bing') | Out-Null
+        if (-not $wshell.AppActivate('Bing')) {
+            throw 'Could not activate the Bing window; refusing to send keystrokes to another application.'
+        }
         Start-Sleep -Milliseconds 500
 
         # Use CTRL+E to focus the search bar (cleaner than F6)

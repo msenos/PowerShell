@@ -57,7 +57,8 @@ function Set-Window {
 "@
 
     # Move and show window
-    if ($X -and $Y -and $Width -and $Height) {
+    if ($PSBoundParameters.ContainsKey('X') -and $PSBoundParameters.ContainsKey('Y') -and
+      $PSBoundParameters.ContainsKey('Width') -and $PSBoundParameters.ContainsKey('Height')) {
       Window::MoveWindow($window,$X,$Y,$Width,$Height,$true)
     }
     
@@ -65,17 +66,37 @@ function Set-Window {
 
 }
 
-# Start Slack with -Passthru option to get process info
-$app = Start-Process "C:\Users\m.senos\AppData\Local\slack\slack.exe" -Passthru
+function Start-SlackLayout {
+  param(
+    [int]$ScreenIndex = 1,
+    [string]$SlackPath = (Join-Path $env:LOCALAPPDATA 'slack\slack.exe')
+  )
 
-# Wait for process ID to be available
-while ( $null -eq $app.Id) {
-  Start-Sleep -Milliseconds 100
+  if (-not (Test-Path $SlackPath)) {
+    throw "Slack was not found at $SlackPath"
+  }
+
+  $screens = [System.Windows.Forms.Screen]::AllScreens
+  if ($ScreenIndex -lt 0 -or $ScreenIndex -ge $screens.Count) {
+    throw "Screen index $ScreenIndex is not available. Detected $($screens.Count) screen(s)."
+  }
+
+  $app = Start-Process -FilePath $SlackPath -PassThru
+  $app.WaitForInputIdle(10000)
+  $app.Refresh()
+
+  $attempts = 0
+  while ($app.MainWindowHandle -eq 0 -and $attempts -lt 50) {
+    Start-Sleep -Milliseconds 100
+    $app.Refresh()
+    $attempts++
+  }
+
+  if ($app.MainWindowHandle -eq 0) {
+    throw "Slack did not expose a window handle in time."
+  }
+
+  $targetScreen = $screens[$ScreenIndex].WorkingArea
+  Set-Window -ProcessName $app.MainWindowTitle -X $targetScreen.X -Y $targetScreen.Y -Width $targetScreen.Width -Height $targetScreen.Height
 }
 
-# Get second screen resolution (assuming it is on right side of primary screen)
-$screen_width = ([System.Windows.Forms.Screen]::AllScreens | Where-Object {$_.Primary}).WorkingArea.Width / 2
-$screen_height = ([System.Windows.Forms.Screen]::AllScreens | Where-Object {$_.Primary}).WorkingArea.Height
-
-# Move Slack window to second screen snapped to right side (assuming primary screen is on left side)
-Set-Window -ProcessName "Slack" -X (3 * $screen_width) -Y 0 -Width $screen_width -Height $screen_height

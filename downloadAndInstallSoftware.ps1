@@ -56,8 +56,13 @@ $appList = @(
 
 # Loop through the list of apps and download them
 foreach($app in $appList){
-    Write-Host "Downloading $($app.Name)"
-    Invoke-WebRequest -Uri $app.Uri -OutFile $app.OutFile
-    #Write-Host "Installing $($app.Name)"
-    #Start-Process $app.OutFile -ArgumentList "/VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
+    try {
+        $outputDirectory = Split-Path -Path $app.OutFile -Parent
+        New-Item -ItemType Directory -Path $outputDirectory -Force -ErrorAction Stop | Out-Null
+        Write-Host "Downloading $($app.Name)"
+        Invoke-WebRequest -Uri $app.Uri -OutFile $app.OutFile -MaximumRedirection 5 -ErrorAction Stop
+        Write-Host "Downloaded to $($app.OutFile)" -ForegroundColor Green
+    } catch {
+        Write-Error "Failed to download $($app.Name): $($_.Exception.Message)"
+    }
 }

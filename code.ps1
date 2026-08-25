@@ -3,10 +3,17 @@ Import-Module SqlServer
 # Function to create the database
 function Create-Database {
     param (
-        [string]$databaseName
+        [Parameter(Mandatory = $true)]
+        [ValidatePattern('^[A-Za-z0-9_]+$')]
+        [string]$databaseName,
+
+        [PSCredential]$Credential
     )
-        
-    
+
+    if ($null -eq $Credential) {
+        $Credential = Get-Credential -Message "Enter SQL Server credentials"
+    }
+
     # Nome da instância do SQL Server e configurações
     $serverInstance = "localhost, 1433" # Substitua pelo nome da sua instância SQL Server
     
@@ -16,7 +23,7 @@ function Create-Database {
 "@
 
     # Conectar ao SQL Server e executar o comando
-    Invoke-Sqlcmd -ServerInstance $serverInstance -Query $sqlCommand -Username "sa" -Password "_mig5Khnum" -TrustServerCertificate
+    Invoke-Sqlcmd -ServerInstance $serverInstance -Query $sqlCommand -Credential $Credential -TrustServerCertificate -ErrorAction Stop
 
     # Confirmação
     Write-Host "Database '$databaseName' created successfully on instance '$serverInstance'."
@@ -24,15 +31,30 @@ function Create-Database {
 
 # Function to create a clean architecture project
 function Start-CleanProject {
+    [CmdletBinding()]
+    param(
+        [string]$ProjectName,
+        [switch]$AddBlazor
+    )
+
     # Prompt for the project name
-    $projectName = Read-Host "Enter the project name"
+    if ([string]::IsNullOrWhiteSpace($ProjectName)) {
+        $ProjectName = Read-Host "Enter the project name"
+    }
+    if ($ProjectName -notmatch '^[A-Za-z][A-Za-z0-9_.-]*$') {
+        throw "Project name must start with a letter and contain only letters, numbers, dots, hyphens, or underscores."
+    }
+
     # Optional: Ask user if they want to add a BlazorClient project
-    $addBlazor = Read-Host "Do you want to add a BlazorClient project? (yes/no)"
+    if (-not $PSBoundParameters.ContainsKey('AddBlazor')) {
+        $AddBlazor = (Read-Host "Do you want to add a BlazorClient project? (yes/no)") -match '^(yes|y)$'
+    }
    
     # Create the project folder and navigate into it
-    Set-Location -Path "C:\Users\mseno\source\repos"
-    New-Item -ItemType Directory -Name $projectName
-    Set-Location -Path $projectName
+    $repositoryPath = Join-Path $env:USERPROFILE 'source\repos'
+    Set-Location -Path $repositoryPath
+    New-Item -ItemType Directory -Name $ProjectName -ErrorAction Stop | Out-Null
+    Set-Location -Path $ProjectName
 
     # Create the solution
     dotnet new sln -n $projectName
@@ -56,8 +78,8 @@ function Start-CleanProject {
     # Return to the root folder
     Set-Location -Path ..
 
-    if ($addBlazor -eq "yes" || $addBlazor -eq "y") {
-        dotnet new blazorwasm -n "$projectName.BlazorClient"
+    if ($AddBlazor) {
+        dotnet new blazorwasm -n "$ProjectName.BlazorClient"
     }
 
     # Add main projects to the solution
@@ -73,8 +95,8 @@ function Start-CleanProject {
     dotnet sln "$projectName.sln" add "Tests/$projectName.Infrastructure.Tests/$projectName.Infrastructure.Tests.csproj"
 
     # Add BlazorClient to the solution (if chosen)
-    if ($addBlazor -eq "yes" || $addBlazor -eq "y") {
-        dotnet sln "$projectName.sln" add "$projectName.BlazorClient/$projectName.BlazorClient.csproj"
+    if ($AddBlazor) {
+        dotnet sln "$ProjectName.sln" add "$ProjectName.BlazorClient/$ProjectName.BlazorClient.csproj"
     }
 
     # Set up dependencies
@@ -117,19 +139,19 @@ function Start-CleanProject {
     dotnet add "Tests/$projectName.Infrastructure.Tests/$projectName.Infrastructure.Tests.csproj" package Moq
 
     # BlazorClient (optional)
-    if ($addBlazor -eq "yes") {
-        dotnet add "$projectName.BlazorClient/$projectName.BlazorClient.csproj" package Microsoft.AspNetCore.Components.WebAssembly
-        dotnet add "$projectName.BlazorClient/$projectName.BlazorClient.csproj" package System.Net.Http.Json
+    if ($AddBlazor) {
+        dotnet add "$ProjectName.BlazorClient/$ProjectName.BlazorClient.csproj" package Microsoft.AspNetCore.Components.WebAssembly
+        dotnet add "$ProjectName.BlazorClient/$ProjectName.BlazorClient.csproj" package System.Net.Http.Json
     }
 
     # Output confirmation
     Write-Host "Clean Architecture solution '$projectName' created successfully with test projects organized in the 'Tests' folder!"
     
-    if ($addBlazor -eq "yes") {
+    if ($AddBlazor) {
         Write-Host "BlazorClient project added to the solution with NuGet packages!"
     }
 
     # Call the Create-Database function
-    Create-Database -databaseName ($projectName + "Db")
+    Create-Database -databaseName ($ProjectName + "Db")
     
 }
