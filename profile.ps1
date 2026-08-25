@@ -39,6 +39,7 @@ function Get-PublicIP {
         Write-Warning "Could not retrieve public IP. Check your connection."
     }
 }
+Set-Alias -Name ip -Value Get-PublicIP
 
 function Shutdown {
     Stop-Computer
